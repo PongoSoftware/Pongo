@@ -1,4 +1,4 @@
-package pongo.phisics;
+package pongo.physics;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -132,9 +132,9 @@ public class Collider{
 	private boolean checkCollisionCircle(int centerx, int centery,
 			int radius, int colCenterx, int colCentery, int colRadius) {
 
-		int distancia = calcularDistancia(centerx,centery,colCenterx,colCentery);
+		int distance = calcularDistancia(centerx,centery,colCenterx,colCentery);
 		
-		if (distancia <= (radius + colRadius)){
+		if (distance <= (radius + colRadius)){
 			return true;
 		} else {
 			return false;
@@ -145,16 +145,16 @@ public class Collider{
 			int centerx, int centery, int initx, int endx, int inity, int endy, //El primero es un cuadrado
 			int colCenterx, int colCentery, int colRadius){ //El segundo es un circulo
 		
-		int distanciax = centerx - colCenterx;
-		int distanciay = centery - colCentery;
+		int distancex = centerx - colCenterx;
+		int distancey = centery - colCentery;
 		
 		int lengthx = endx - initx;
 		int lengthy = endy - inity;
-		int calcular = (int) (Math.pow(lengthx,2) +  Math.pow(lengthy,2));
+		int calc = (int) (Math.pow(lengthx,2) +  Math.pow(lengthy,2));
 						
-		int hipotenusa = (int) Math.sqrt(calcular);
+		int hipotenuse = (int) Math.sqrt(calc);
 		
-		if (hipotenusa <= colRadius) {
+		if (hipotenuse <= colRadius) {
 			return true;
 		} else {
 			return false;
@@ -162,11 +162,11 @@ public class Collider{
 	}
 	
 	private int calcularDistancia(int centerx, int centery, int colCenterx, int colCentery){
-		int suma1 = centerx - colCentery; 
-		int suma2 = centery - colCentery;
-		double cuadrado = (Math.pow(suma1, 2) + Math.pow(suma2, 2));
-		int distancia = (int) Math.sqrt(cuadrado);
-		return distancia;
+		int sum1 = centerx - colCentery; 
+		int sum2 = centery - colCentery;
+		double square = (Math.pow(sum1, 2) + Math.pow(sum2, 2));
+		int distance = (int) Math.sqrt(square);
+		return distance;
 	}
 
 	
