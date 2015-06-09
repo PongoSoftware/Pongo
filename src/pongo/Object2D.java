@@ -2,8 +2,8 @@ package pongo;
 
 public abstract class Object2D {
 
-	private int X; 
-	private int Y;
+	private int posx; 
+	private int posy;
 	private int SpeedX;
 	private int SpeedY;
 	private int Ancho;
@@ -13,8 +13,8 @@ public abstract class Object2D {
 
 	public Object2D (int esX, int esY, int esSpeedX, 
 					int esSpeedY, int esAncho, int esAlto){
-		X = esX; 
-		Y = esY; 
+		posx = esX; 
+		posy = esY; 
 		SpeedX = esSpeedX;
 		SpeedY = esSpeedY;
 		Ancho = esAncho;
@@ -22,8 +22,8 @@ public abstract class Object2D {
 	}
 	
 	public Object2D (int esAncho, int esAlto){
-		X = 0;
-		Y = 0;
+		posx = 0;
+		posy = 0;
 		SpeedX = 0;
 		SpeedY = 0;
 		Ancho = esAncho;
@@ -31,20 +31,20 @@ public abstract class Object2D {
 	}
 //-----------Setter-&-Getter----------------
 	public void SetX(int miX){
-		X = miX;
+		posx = miX;
 	}
 	
 	public double GetX(){
-		return X;
+		return posx;
 	}
 	
 	
 	public void SetY(int miY){
-		Y = miY;
+		posy = miY;
 	}
 	
 	public double GetY(){
-		return Y;
+		return posy;
 	}
 
 	public void SetSpeedX(int miSpeedX){
@@ -83,14 +83,14 @@ public abstract class Object2D {
 // -----------------Métodos-----------------
 	
 	public void ChangePos (int isX, int isY){
-		X = isX;
-		Y = isY;
+		posx = isX;
+		posy = isY;
 	}
 	
 	public int[] GivePos (){
 		int[] temp = new int[2];
-		temp [0] = X;
-		temp [1] = Y;
+		temp [0] = posx;
+		temp [1] = posy;
 		return temp;
 	}
 }
