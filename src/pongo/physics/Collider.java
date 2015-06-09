@@ -21,10 +21,6 @@ public class Collider{
 		calcRect();
 	}
 	
-	private void callRect(int centerx, int centery, int radius){
-//		setCircle(centerx, centery,radius);
-	}
-	
 	private void calcRect(){
 		initx = centerx - radius;
 		inity = centery - radius;
@@ -32,17 +28,17 @@ public class Collider{
 		endy = centery + radius;
 	}
 	
-	public void setRect(int x, int y, int w, int h){
+	public void setRect(int x, int y, int width, int height){
 		initx = x;
 		inity = x;
-		endx = x + w;
-		endy = x + h;
-		callCenter();
+		endx = x + width;
+		endy = x + height;
+		calcCenter();
 	}
 	
 	//Unused
-	private void calcCircle(int x, int y, int w, int h){
-		setRect(x,y,w,h);
+	private void calcCircle(int x, int y, int width, int height){
+		setRect(x,y,width,height);
 	}
 	//unused
 	private void calcCircle(){
@@ -52,15 +48,15 @@ public class Collider{
 			radius = inity;
 		}
 		
-		callCenter();
+		calcCenter();
 	}
 	
-	private void callCenter(){
+	private void calcCenter(){
 		centerx = initx + (endx - initx) / 2; 
 		centery = inity + (endy - inity) / 2; 
 	}
 	
-	public static void checkCollision(){ //Check collision of all collider.
+	public static void checkCollisionList(){ //Check collision of all collider.
 		for (int i = 0; i < listCollider.size(); i++){
 			for (int k = i; i < listCollider.size(); k++){
 				listCollider.get(i).checkCollision(listCollider.get(k));
