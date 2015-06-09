@@ -1,8 +1,6 @@
 package pongo;
 
-import pongo.intefaces.ISprite;
-
-public class Disc extends Mobil implements ISprite {
+public class Disc extends Mobil  {
 
 	public Disc(int esX, int esY, int esSpeedX, int esSpeedY, int esAncho,
 			int esAlto) {

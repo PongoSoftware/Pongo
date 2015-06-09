@@ -1,8 +1,6 @@
 package pongo;
 
-import pongo.intefaces.ISprite;
-
-public class Racket extends Mobil implements ISprite {
+public class Racket extends Mobil{
 
 	public Racket(int esX, int esY, int esSpeedX, int esSpeedY, int esAncho,
 			int esAlto) {

@@ -5,12 +5,11 @@ import java.util.Iterator;
 
 public class Collider{
 
-	int centerx, centery, initx, inity, endx, endy, radius, diameter;
+	int centerx, centery, initx, inity, endx, endy, radius;
 	static ArrayList<Collider> listCollider;
 	
 	public Collider(){
 		listCollider.add(this);
-		diameter = -1;
 		radius = -1;
 	}
 	
@@ -33,7 +32,12 @@ public class Collider{
 		inity = x;
 		endx = x + width;
 		endy = x + height;
+		radius = -1;
 		calcCenter();
+	}
+	
+	public void setCircle(){
+		calcCircle();
 	}
 	
 	//Unused
@@ -72,12 +76,14 @@ public class Collider{
 		colInity = collider.getInity();
 		colEndy = collider.getEndy();
 		
+		//NOTA: Radio se inicializa a -1 si es un cuadrado
+		
 		//Si hay colisiones en los ejes
 		if ( checkCollisionEje(initx, endx, colInitx,colEndx) && checkCollisionEje(inity, endy, colInity, colEndy) ){
 			//Calcular si ambos son cuadrados:
-			if (diameter < 0 && collider.getDiameter() < 0 ){ //No son dos cadrados
+			if (radius < 0 && collider.getRadius() < 0 ){ //No son dos cadrados
 				//Comprobar si son dos circulos o dos figuras distintas
-				if(radius < 0 && collider.getRadius() < 0) { //No son dos circulos (cuadrado y circulo).
+				if(!(radius < 0) && !(collider.getRadius() < 0)) { //No son dos circulos (cuadrado y circulo).
 					//Si la mitad de la longitud del lado del cuadrado más el radio es mayor que la distancia, 
 					//no hay colision
 					// (Se omite con comprobación anterior)
@@ -170,63 +176,55 @@ public class Collider{
 		return centerx;
 	}
 
-	public void setCenterx(int centerx) {
-		this.centerx = centerx;
-	}
+//	public void setCenterx(int centerx) {
+//		this.centerx = centerx;
+//	}
 
 	public int getCentery() {
 		return centery;
 	}
 
-	public void setCentery(int centery) {
-		this.centery = centery;
-	}
+//	public void setCentery(int centery) {
+//		this.centery = centery;
+//	}
 
 	public int getInitx() {
 		return initx;
 	}
 
-	public void setInitx(int initx) {
-		this.initx = initx;
-	}
+//	public void setInitx(int initx) {
+//		this.initx = initx;
+//	}
 
 	public int getInity() {
 		return inity;
 	}
 
-	public void setInity(int inity) {
-		this.inity = inity;
-	}
+//	public void setInity(int inity) {
+//		this.inity = inity;
+//	}
 
 	public int getEndx() {
 		return endx;
 	}
 
-	public void setEndx(int endx) {
-		this.endx = endx;
-	}
+//	public void setEndx(int endx) {
+//		this.endx = endx;
+//	}
 
 	public int getEndy() {
 		return endy;
 	}
 
-	public void setEndy(int endy) {
-		this.endy = endy;
-	}
+//	public void setEndy(int endy) {
+//		this.endy = endy;
+//	}
 
 	public int getRadius() {
 		return radius;
 	}
 
-	public void setRadius(int radius) {
-		this.radius = radius;
-	}
-
-	public int getDiameter() {
-		return diameter;
-	}
-
-	public void setDiameter(int diameter) {
-		this.diameter = diameter;
-	}
+//	public void setRadius(int radius) {
+//		this.radius = radius;
+//	}
 }
