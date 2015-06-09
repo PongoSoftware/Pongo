@@ -14,7 +14,7 @@ public class GameFrame extends JFrame {
 	private int[] resolution; // 0 es ancho, 1 es alto.
 	private Background back;
 	
-	private GameField gameArea;
+	private JPanel gameArea;
 	
 	GameFrame(int width,int height, Background nBack){
 	
@@ -40,8 +40,8 @@ public class GameFrame extends JFrame {
 		//getContentPane().setBackground(Color.green);
 		
 		//gameArea = new GameField((int)(resolution[0] * 2f/3f), (int)(resolution[1] * resolution[1] * 27f/30f));
-		gameArea = new GameField(resolution[0], resolution[1]);
-		getContentPane().add(gameArea);
+		gameArea = new GameField(resolution[0], resolution[1], new BorderLayout(0,0));
+		getContentPane().add(gameArea, BorderLayout.CENTER);
 		
 		
 	}

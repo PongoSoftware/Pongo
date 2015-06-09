@@ -2,6 +2,7 @@ package PongoGUI;
 
 import javax.swing.*;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -13,7 +14,9 @@ public class GameField extends JPanel { // Area o campo donde se desarrolla el j
 	private int[] resolution;
 	private List toDraw;
 	
-	GameField(int width, int height){
+	GameField(int width, int height, BorderLayout border){
+		
+		super(border);
 		
 		resolution = new int [2];
 		
@@ -28,7 +31,9 @@ public class GameField extends JPanel { // Area o campo donde se desarrolla el j
 		
 	}
 	
-	public void repaint(Graphics g){
+	public void paintComponent(Graphics g){
+		
+		super.paintComponent(g);
 		
 /*		int[] position;
 		
@@ -39,8 +44,7 @@ public class GameField extends JPanel { // Area o campo donde se desarrolla el j
 		}
 */
 		g.setColor(Color.yellow);
-		g.fillOval(100, 200, 100, 100);
-		g.fillRect(0, 0, 300, 100);
+		g.fillOval(500, 100, 100, 100);
 		
 	}
 	
