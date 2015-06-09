@@ -2,7 +2,7 @@ package PongoGUI;
 
 import java.awt.Image;
 
-public class Background extends Object2D{
+public class Background /*extends Object2D*/{
 
 	private Image backImage;
 	
