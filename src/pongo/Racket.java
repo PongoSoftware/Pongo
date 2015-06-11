@@ -1,11 +1,14 @@
 package pongo;
 
+import pongo.intefaces.ICollidable;
+import pongo.intefaces.ICollidableRectCircle;
+import pongo.physics.Collider;
+
 public class Racket extends Mobil{
+	private Collider collider;
 
-	public Racket(int esX, int esY, int esSpeedX, int esSpeedY, int esAncho,
+	public Racket(int esX, int esY, int esAncho,
 			int esAlto) {
-		super(esX, esY, esSpeedX, esSpeedY, esAncho, esAlto);
-		// TODO Apéndice de constructor generado automáticamente
+		super(esX, esY, esAncho, esAlto);
 	}
-
 }

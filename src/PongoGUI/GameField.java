@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pongo.*;
-import pongo.intefaces.*;
 import pongo.physics.*;
 
 public class GameField extends JPanel { // Area o campo donde se desarrolla el juego
@@ -45,8 +44,8 @@ public class GameField extends JPanel { // Area o campo donde se desarrolla el j
 		
 		super.paintComponent(g);
 		
-		System.out.println(toDraw.size());
-		System.out.println(toDraw.isEmpty());
+//		System.out.println(toDraw.size());
+//		System.out.println(toDraw.isEmpty());
 		
 		if(toDraw.isEmpty() == false){
 		
@@ -56,9 +55,9 @@ public class GameField extends JPanel { // Area o campo donde se desarrolla el j
 			
 			for(int i = 0; i < toDraw.size(); i++){
 				
-				position = ((Object2D) toDraw.get(i)).GivePos();
-				size[0] =  ((Object2D) toDraw.get(i)).GetAncho();
-				size[1] =  ((Object2D) toDraw.get(i)).GetAncho();				
+				position = ((Object2D) toDraw.get(i)).getPos();
+				size[0] =  ((Object2D) toDraw.get(i)).getWidth();
+				size[1] =  (int) ((Object2D) toDraw.get(i)).getHeight();				
 				
 				g.setColor(Color.yellow);
 				g.fillOval(position[0], position[1], size[0], size[1]);
