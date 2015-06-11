@@ -87,8 +87,7 @@ public class GameFrame extends JFrame {
 	
 	// ------------------------------- Pruebas
 	
-	/*
-	 * 
+
 	public static void main (String[] args) throws InterruptedException{
 		
 		Background back = new Background();
@@ -121,6 +120,6 @@ public class GameFrame extends JFrame {
 		
 	}
 	
-	*/
+	
 
 }

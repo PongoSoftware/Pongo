@@ -13,7 +13,7 @@ public class PongoMain {
 		int racketwidth = 40;
 		int racketheight = 40;
 
-		Racket[] rackets = new Racket[2];
+		Racket[] rackets = new Racket[numPlayers];
 		for (int i = 0; i < numPlayers; i++){
 			int posx = panelx / 3 * (i + 1) - racketwidth;
 			int posy = panely / 2 - racketheight;
@@ -30,7 +30,10 @@ public class PongoMain {
 		int widthFieldx = panelx;
 		int heightFieldx = panely;
 		
-		Field field = new Field(marginFieldx, marginFieldy, 0, 0, widthFieldx, heightFieldx); 
+		Field[] field = new Field[numPlayers];
+		
+		field[0] = new Field (marginFieldx, marginFieldy, 0, 0, widthFieldx, heightFieldx); 
+		field[1] = new Field (panelx - marginFieldx, panely - marginFieldy, 0, 0, widthFieldx, heightFieldx); 
 		
 		int sizeGoal = 50;
 		int marginGoalx = 0;
