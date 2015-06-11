@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pongo.*;
-import pongo.intefaces.*;
 import pongo.physics.*;
 
 public class GameField extends JPanel { // Area o campo donde se desarrolla el juego
