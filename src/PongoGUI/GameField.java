@@ -9,10 +9,18 @@ import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
 
+import pongo.*;
+import pongo.intefaces.*;
+import pongo.physics.*;
+
 public class GameField extends JPanel { // Area o campo donde se desarrolla el juego
 
+	// ----------------------------------- Atributos
+	
 	private int[] resolution;
 	private List toDraw;
+	
+	// ----------------------------------- Constructores
 	
 	GameField(int width, int height, BorderLayout border){
 		
@@ -31,30 +39,41 @@ public class GameField extends JPanel { // Area o campo donde se desarrolla el j
 		
 	}
 	
+	// ------------------------------------ Métodos y funcionalidad
+	
 	public void paintComponent(Graphics g){
 		
 		super.paintComponent(g);
 		
-/*		int[] position;
+		System.out.println(toDraw.size());
+		System.out.println(toDraw.isEmpty());
 		
-		for(int i = 0; i < toDraw.size(); i++){
+		if(toDraw.isEmpty() == false){
+		
+			int[] position;
+			int[] size;
+			size = new int[2];
 			
-			position = toDraw[i].getPosition();
-			
+			for(int i = 0; i < toDraw.size(); i++){
+				
+				position = ((Object2D) toDraw.get(i)).GivePos();
+				size[0] =  ((Object2D) toDraw.get(i)).GetAncho();
+				size[1] =  ((Object2D) toDraw.get(i)).GetAncho();				
+				
+				g.setColor(Color.yellow);
+				g.fillOval(position[0], position[1], size[0], size[1]);
+				
+			}
 		}
-*/
-		g.setColor(Color.yellow);
-		g.fillOval(500, 100, 100, 100);
-		
 	}
 	
-	public void draw(Image nToDraw){
+	public void draw(Object2D nToDraw){
 		
 		toDraw.add(nToDraw);
 		
 	}
 	
-	public void stopDraw(Image nStopDraw){
+	public void stopDraw(Object2D nStopDraw){
 		
 		toDraw.remove(nStopDraw);
 		

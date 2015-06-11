@@ -1,5 +1,10 @@
 package PongoGUI;
 
+
+import pongo.*;
+import pongo.intefaces.*;
+import pongo.physics.*;
+
 import javax.swing.*;
 
 import java.awt.BorderLayout;
@@ -10,11 +15,14 @@ import java.util.ArrayList;
 
 public class GameFrame extends JFrame {
 
+	// --------------------------------------- Atributos
 	
 	private int[] resolution; // 0 es ancho, 1 es alto.
 	private Background back;
 	
 	private JPanel gameArea;
+	
+	// --------------------------------------- Constructores
 	
 	public GameFrame(int width,int height, Background nBack){
 	
@@ -37,14 +45,14 @@ public class GameFrame extends JFrame {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		//getContentPane().setBackground(Color.green);
-		
 		//gameArea = new GameField((int)(resolution[0] * 2f/3f), (int)(resolution[1] * resolution[1] * 27f/30f));
 		gameArea = new GameField(resolution[0], resolution[1], new BorderLayout(0,0));
 		getContentPane().add(gameArea, BorderLayout.CENTER);
 		
 		
 	}
+	
+	//------------------------------------ Métodos y Funcionalidad
 	
 	public void launch(){
 		
@@ -54,29 +62,13 @@ public class GameFrame extends JFrame {
 	
 	public void repaint(){
 		
-	//	Image draw = back.imageToDraw();
-		int[] pos = new int[2];
-/*				
-		for(int i = 0; i < toDraw.size(); i++){
-			
-			pos = toDraw[i].getPosition();			
-			draw = toDraw[i].getImage();
-			
-		}
-*/	
-		
-	}
-	
-	public void repaint(boolean prueba){
-		
 		gameArea.repaint();
 		
 	}
 	
-/*	
-	public void drawObject(Object2D nToDraw){
+	public void drawGameObject(Object2D nToDraw){
 		
-		toDraw.Add(nToDraw);
+		((GameField)gameArea).draw(nToDraw);
 		
 	}
 	
@@ -88,26 +80,47 @@ public class GameFrame extends JFrame {
 	
 	public void stopDraw(Object2D nStopDraw){
 		
-		toDraw.Remove(nStopDraw);
+		((GameField)gameArea).stopDraw(nStopDraw);
 		
 	}	
-
-*/
 	
+	
+	// ------------------------------- Pruebas
+	
+	/*
+	 * 
 	public static void main (String[] args) throws InterruptedException{
 		
 		Background back = new Background();
 		
-		GameFrame frame = new GameFrame(800, 300, back);
+		GameFrame frame = new GameFrame(800, 500, back);
+		Object2D circ1 = new Racket(100, 100, 10, 20, 20, 20);
+		Object2D circ2 = new Racket(200, 150, 10, 20, 20, 20);
+		Object2D circ3 = new Racket(300, 200, 10, 20, 20, 20);
+		Object2D circ4 = new Racket(400, 250, 10, 20, 20, 20);
+		Object2D circ5 = new Racket(500, 300, 10, 20, 20, 20);
+		Object2D circ6 = new Racket(600, 350, 10, 20, 20, 20);
+		
+		frame.drawGameObject(circ1);
+		frame.drawGameObject(circ2);
+		frame.drawGameObject(circ3);
+		frame.drawGameObject(circ4);
+		frame.drawGameObject(circ5);
+		frame.drawGameObject(circ6);
+		//frame.stopDraw(circ4);
 		
 		while(true){
 			
-			frame.repaint(true);
+			frame.repaint();
 			
-			Thread.sleep(100);
+			circ1.SetX((int)circ1.GetX()+1);
+			
+			Thread.sleep(30);
 			
 		}
 		
 	}
+	
+	*/
 
 }

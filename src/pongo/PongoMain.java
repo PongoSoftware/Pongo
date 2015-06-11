@@ -44,7 +44,7 @@ public class PongoMain {
 		
 		while(true){
 			
-			frame.repaint(true);
+			frame.repaint();
 			
 			try {
 				Thread.sleep(100);
