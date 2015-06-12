@@ -5,10 +5,10 @@ import pongo.intefaces.ICollidableRectCircle;
 import pongo.physics.Collider;
 
 public class Racket extends Mobil{
-	private Collider collider;
 
 	public Racket(int esX, int esY, int esAncho,
-			int esAlto) {
-		super(esX, esY, esAncho, esAlto);
+			int esAlto, int limx, int limy) {
+		super(esX, esY, esAncho, esAlto, limx, limy);
+		power = 10;
 	}
 }

@@ -1,9 +1,14 @@
 package pongo;
 
+import pongo.physics.Collider;
+
 public class Disc extends Mobil  {
 
-	public Disc(int esX, int esY, int esAncho,int esAlto) {
-		super(esX, esY, esAncho, esAlto);
-	}
+	private Collider collider;
 
+	public Disc(int esX, int esY, int esAncho,
+			int esAlto, int limx, int limy) {
+		super(esX, esY, esAncho, esAlto, limx, limy);
+		receiveCollision = true;
+	}	
 }

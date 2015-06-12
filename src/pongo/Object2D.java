@@ -8,7 +8,6 @@ public abstract class Object2D {
 	protected int posy;
 	protected int width;
 	protected int height;
-	protected Collider collider;
 
 //--------------Costructor------------------
 
@@ -17,8 +16,6 @@ public abstract class Object2D {
 		posy = esY; 
 		width = esAncho;
 		height = esAlto;
-		collider = new Collider();
-		collider.setRectCircle(posx,  posy, width, height);
 	}
 	
 	public Object2D (int esAncho, int esAlto){
@@ -28,9 +25,13 @@ public abstract class Object2D {
 		height = esAlto;
 	}
 //-----------Setter-&-Getter----------------
+	public void setPos(int x, int y){
+		posx = x;
+		posy = y;
+	}
+	
 	public void setX(int miX){
 		posx = miX;
-		collider.setRectCircle(posx,  posy, width, height);
 	}
 	
 	public double getX(){
@@ -39,7 +40,6 @@ public abstract class Object2D {
 	
 	public void setY(int miY){
 		posy = miY;
-		collider.setRectCircle(posx,  posy, width, height);
 	}
 	
 	public double getY(){
@@ -48,7 +48,6 @@ public abstract class Object2D {
 	
 	public void setWidth(int miAncho){
 			width = miAncho;
-			collider.setRectCircle(posx,  posy, width, height);
 	}
 		
 	public int getWidth(){
@@ -57,7 +56,6 @@ public abstract class Object2D {
 	
 	public void setHeight(int miAlto){
 		height = miAlto;
-		collider.setRectCircle(posx,  posy, width, height);
 	}
 		
 	public double getHeight(){

@@ -3,13 +3,18 @@ package pongo.physics;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import pongo.Mobil;
+import pongo.Mobil;
+
 public class Collider{
 
+	Mobil object;
 	int centerx, centery, initx, inity, endx, endy, radius;
 	static ArrayList<Collider> listCollider = new ArrayList();
 	
-	public Collider(){
+	public Collider(Mobil obj){
 		radius = -1;
+		object = obj;
 		listCollider.add(this);
 	}
 		
@@ -119,8 +124,10 @@ public class Collider{
 				} else { //Son dos circulos
 					//SON DOS CIRCULOS
 //					System.out.println("Son dos circulos");
-					if(checkCollisionCircle(centerx, centery, radius, 
-							collider.getCenterx(), collider.getCentery(), collider.getRadius())){
+					if(checkCollisionCircle(this.object, collider.object,
+							centerx, centery, radius, 
+							collider.getCenterx(), collider.getCentery(), collider.getRadius()))
+					{
 						hasCollision = true;
 					}
 				}
@@ -130,7 +137,6 @@ public class Collider{
 				hasCollision = true;
 			}
 		}    
-		
 		return hasCollision;
 	}
 
@@ -150,11 +156,11 @@ public class Collider{
         }		
 	}
 	
-	private boolean checkCollisionCircle(int centerx, int centery,
+	private boolean checkCollisionCircle(Mobil object, Mobil object2, int centerx, int centery,
 			int radius, int colCenterx, int colCentery, int colRadius) {
-		int distance = calcularDistancia(centerx,centery,colCenterx,colCentery);
-		
+		int distance = Utils.calcDistance(centerx, centery, colCenterx, colCentery);
 		if (distance <= (radius + colRadius)){
+			Reactions.circles(object,object2);
 			return true;
 		} else {
 			return false;
@@ -180,15 +186,6 @@ public class Collider{
 			return false;
 		}
 	}
-	
-	private int calcularDistancia(int centerx, int centery, int colCenterx, int colCentery){
-		int sum1 = colCenterx - centerx ; 
-		int sum2 = colCentery - centery ;
-		double square = (Math.pow(sum1, 2) + Math.pow(sum2, 2));
-		int distance = (int) Math.sqrt(square);
-		return distance;
-	}
-
 	
 	public int getCenterx() {
 		return centerx;

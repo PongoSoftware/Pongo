@@ -1,5 +1,7 @@
 package pongo;
 
+import java.awt.Component;
+
 import pongo.physics.Collider;
 import PongoGUI.Background;
 import PongoGUI.GameFrame;
@@ -14,7 +16,7 @@ public class PongoMain {
 	Background back;
 	
 	public PongoMain(int numPlayers){
-		int velocicdad = 200;
+		int velocidad = 36;
 		
 		int panelx, panely;
 		panelx = 800;
@@ -42,7 +44,7 @@ public class PongoMain {
 		for (int i = 0; i < numPlayers; i++){
 			int posx = panelx / 3 * (i + 1) - racketwidth / 2;
 			int posy = panely / 2 - racketheight / 2;
-			rackets[i] = new Racket(posx, posy, racketwidth, racketheight);
+			rackets[i] = new Racket(posx, posy, racketwidth, racketheight,panelx,panely);
 			int posxGoal = panelx * i - marginFieldx / 2 - widthGoal * i * 2;
 //			if (i == 1){
 //				posxGoal = panelx * i - marginFieldx / 2;
@@ -54,12 +56,17 @@ public class PongoMain {
 		int discSize = 30;
 		int posx = panelx / 2 - discSize / 2;
 		int posy = panely / 2 - discSize / 2;
-		disc = new Disc(posx, posy, discSize, discSize);
+		disc = new Disc(posx, posy, discSize, discSize,panelx,panely);
 		
 		
 		back = new Background();
 		
+//		rackets[0].setPos(500,300);
+//		rackets[1].setPos(481,271);
+//		velocidad = 1000;
+		
 		frame = new GameFrame(panelx, panely, back);
+		frame.setController(this);
 		
 		frame.drawGameObject(rackets[0]);
 		frame.drawGameObject(rackets[1]);
@@ -67,22 +74,23 @@ public class PongoMain {
 		frame.drawGameObject(goal[0]);
 		frame.drawGameObject(goal[1]);
 		
-		boolean sigueJuego = false;
+//		boolean sigueJuego = false;
+		boolean sigueJuego = true;
 		do{
 			
 			frame.repaint();
 			try {
-				Thread.sleep(velocicdad);
+				Thread.sleep(velocidad);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			} finally {
-//				((Mobil) disc).move();
+				((Mobil) disc).move();
 				Collider.checkCollisionList();
 			}
 		}while(sigueJuego);
 	}
 
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) {
 		int numPlayers = 2;
 		PongoMain pongoMain = new PongoMain(numPlayers);
 		
@@ -101,4 +109,28 @@ public class PongoMain {
 		*/
 	}
 
+	/**
+	 * 37 izquierda
+	 * 38 arriba
+	 * 39 derecha
+	 * 40 abajo
+	 * @param keyCode
+	 */
+	public void receiveKeyMenssage(int keyCode) {
+		switch(keyCode){
+		case 37:
+			((Racket) rackets[1]).move(-5,0);
+			break;
+		case 38:
+			((Racket) rackets[1]).move(0,-5);
+			break;
+		case 39:
+			((Racket) rackets[1]).move(5,0);
+			break;
+		case 40:
+			((Racket) rackets[1]).move(0,5);
+			break;
+		}
+	}
+		
 }
