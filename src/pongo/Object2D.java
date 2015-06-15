@@ -1,5 +1,7 @@
 package pongo;
 
+import java.awt.Color;
+
 import pongo.physics.Collider;
 
 public abstract class Object2D {
@@ -10,6 +12,8 @@ public abstract class Object2D {
 	protected int width;
 	protected int height;
 
+	protected Color color;
+	
 //--------------Costructor------------------
 
 	public Object2D (int esX, int esY, int esAncho, int esAlto){
@@ -17,7 +21,17 @@ public abstract class Object2D {
 		posy = esY; 
 		width = esAncho;
 		height = esAlto;
+		color = Color.YELLOW;
 	}
+	
+	public Object2D (int esX, int esY, int esAncho, int esAlto, Color nColor){
+		posx = esX; 
+		posy = esY; 
+		width = esAncho;
+		height = esAlto;
+		color = nColor;
+	}
+
 	
 	public Object2D (int esAncho, int esAlto){
 		posx = 0;
@@ -65,6 +79,12 @@ public abstract class Object2D {
 	
 	public int getType(){
 		return type;
+	}
+	
+	public Color getColor(){
+		
+		return color;
+		
 	}
 	
 // -----------------Métodos-----------------
