@@ -3,11 +3,7 @@ package pongo;
 import pongo.physics.Collider;
 
 public abstract class Object2D {
-<<<<<<< HEAD
 
-=======
-
->>>>>>> merge
 	protected int type; // 0 es círculo, 1 es cuadrado, 2 es triángulo.
 	protected int posx; 
 	protected int posy;

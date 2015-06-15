@@ -38,10 +38,4 @@ public class Reactions {
 			object2.setY((int) (object2.getY() + distanceY / magicNum));
 		}
 	}
-
-<<<<<<< HEAD
 }
-=======
-}
-
->>>>>>> merge
