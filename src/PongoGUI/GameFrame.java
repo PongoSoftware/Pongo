@@ -58,17 +58,24 @@ public class GameFrame extends JFrame {
 	        @Override
 	        public void keyTyped(KeyEvent e) {
 //	            System.out.println(e.getKeyCode());
+	        	 controller.recieveKeyPressed(e.getKeyCode());
+	        	// controller.movement();
 	        }
 
 	        @Override
 	        public void keyPressed(KeyEvent e) {
-	        	 controller.receiveKeyMenssage(e.getKeyCode());
+//	            System.out.println(e.getKeyCode());
+	        	controller.recieveKeyPressed(e.getKeyCode());
+	        //	controller.movement();
 	        }
 
 	        @Override
 	        public void keyReleased(KeyEvent e) {
 //	            System.out.println(e.getKeyCode());
+	        	controller.recieveKeyReleased(e.getKeyCode());
+	        //	controller.movement();
 	        }
+	        
 	    });
 	}
 	

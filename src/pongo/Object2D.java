@@ -4,6 +4,7 @@ import pongo.physics.Collider;
 
 public abstract class Object2D {
 
+	protected int type; // 0 es círculo, 1 es cuadrado, 2 es triángulo.
 	protected int posx; 
 	protected int posy;
 	protected int width;
@@ -60,6 +61,10 @@ public abstract class Object2D {
 		
 	public double getHeight(){
 		return height;
+	}
+	
+	public int getType(){
+		return type;
 	}
 	
 // -----------------Métodos-----------------

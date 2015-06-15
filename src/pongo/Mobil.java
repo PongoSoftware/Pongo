@@ -15,7 +15,11 @@ public abstract class Mobil extends Object2D implements IMobil {
 	protected double power;
 	protected double aceleration, acelerationX, acelerationY;
 	private boolean mobible;
-	
+	protected int dirX; // 1 y -1 
+	protected int dirY; 
+	protected boolean moveX;
+	protected boolean moveY;
+	protected int limitx, limity;	
 	
 	//---------------Constructor---------------
 
@@ -29,6 +33,8 @@ public abstract class Mobil extends Object2D implements IMobil {
 		collider = new Collider(this);
 		collider.setRectCircle(posx,  posy, width, height);
 		aceleration = 0;
+		collider = new Collider(this);
+		collider.setRectCircle(posx,  posy, width, height);
 	}
 	
 	public int getAcelerationx() {
@@ -92,7 +98,6 @@ public abstract class Mobil extends Object2D implements IMobil {
 		collider.setRectCircle(posx,  posy, width, height);
 	}
 	
-
 	public void move(int x, int y) {
 		posx += x;
 		posy += y;
@@ -138,8 +143,7 @@ public abstract class Mobil extends Object2D implements IMobil {
 		}else if ((posy + height) > botton){
 			speedY = speedY * -1;
 			posy = botton - height;
-		}		
-		collider.setRectCircle(posx,  posy, width, height);
+		}
 	}
 	
 	@Override
@@ -165,7 +169,34 @@ public abstract class Mobil extends Object2D implements IMobil {
 		height = miAlto;
 		collider.setRectCircle(posx,  posy, width, height);
 	}
-
+	
+	public void move(boolean moving) {
+		
+		//if(moving == true){
+		
+		System.out.println("Velocidades: " + speedX + ", " + speedY + ", dirX e Y " + dirX + ", " + dirY);
+		
+			speedX = 10;
+			speedY = 10;
+			
+			posx += (speedX * dirX);
+			posy += (speedY * dirY);
+			collider.setRectCircle(posx,  posy, width, height);	
+			
+		//}
+	}
+	
+	public void moveX(int x){
+		
+		dirX = x;
+		
+	}
+	
+	public void moveY(int y){
+		
+		dirY = y;
+		
+	}
 
 	public Collider getCollider() {
 		return collider;
@@ -178,7 +209,6 @@ public abstract class Mobil extends Object2D implements IMobil {
 	public void setReceiveCollision(boolean b){
 		receiveCollision = b;
 	}
-
 
 	public double getPower() {
 		return power;
@@ -194,7 +224,6 @@ public abstract class Mobil extends Object2D implements IMobil {
 		mobible = b;
 	}
 	
-
 	public boolean getMobible(){
 		return mobible;
 	}

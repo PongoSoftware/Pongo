@@ -60,8 +60,26 @@ public class GameField extends JPanel { // Area o campo donde se desarrolla el j
 				size[1] =  (int) ((Object2D) toDraw.get(i)).getHeight();				
 				
 				g.setColor(Color.yellow);
-				g.fillOval(position[0], position[1], size[0], size[1]);
 				
+				int type = ((Object2D)toDraw.get(i)).getType();
+				
+				switch(type){
+				
+				case 0:
+					
+					g.fillOval(position[0], position[1], size[0], size[1]);
+					break;
+					
+				case 1:
+					
+					g.fillRect(position[0], position[1], size[0], size[1]);
+					break;
+					
+				case 2:
+					
+					break;				
+					
+				}
 			}
 		}
 	}
