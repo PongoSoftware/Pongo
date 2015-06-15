@@ -15,9 +15,7 @@ public interface IMobil {
 		public void setSpeed(int x, int y);
 		
 		public void move();
-		
-		public void move(int x, int y);
-		
+			
 		public void setReceiveCollision(boolean b);
 		
 		public boolean getReceiveCollision();

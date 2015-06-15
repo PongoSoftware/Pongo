@@ -15,12 +15,15 @@ public abstract class Mobil extends Object2D implements IMobil {
 	protected double power;
 	protected double aceleration, acelerationX, acelerationY;
 	private boolean mobible;
-	
+	protected int dirX; // 1 y -1 
+	protected int dirY;
+	protected boolean moveX;
+	protected boolean moveY; 	
 	
 	//---------------Constructor---------------
 
 	public Mobil(int esX, int esY, int esAncho,
-	int esAlto, int top, int rigth, int botton, int left) {
+			int esAlto, int top, int rigth, int botton, int left) {
 		super(esX, esY, esAncho, esAlto);
 		this.top = top;
 		this.rigth = rigth;
@@ -92,13 +95,6 @@ public abstract class Mobil extends Object2D implements IMobil {
 		collider.setRectCircle(posx,  posy, width, height);
 	}
 	
-
-	public void move(int x, int y) {
-		posx += x;
-		posy += y;
-		collider.setRectCircle(posx,  posy, width, height);		
-	}
-	
 	public void move(){
 		
 		double acePos = Math.abs(aceleration); 
@@ -138,7 +134,8 @@ public abstract class Mobil extends Object2D implements IMobil {
 		}else if ((posy + height) > botton){
 			speedY = speedY * -1;
 			posy = botton - height;
-		}		
+		}	
+		
 		collider.setRectCircle(posx,  posy, width, height);
 	}
 	
@@ -165,7 +162,31 @@ public abstract class Mobil extends Object2D implements IMobil {
 		height = miAlto;
 		collider.setRectCircle(posx,  posy, width, height);
 	}
-
+	
+	public void move(boolean moving) {
+		
+		//if(moving == true){		
+			speedX = 10;
+			speedY = 10;
+			
+			posx += (speedX * dirX);
+			posy += (speedY * dirY);
+			collider.setRectCircle(posx,  posy, width, height);	
+			
+		//}
+	}
+	
+	public void moveX(int x){
+		
+		dirX = x;
+		
+	}
+	
+	public void moveY(int y){
+		
+		dirY = y;
+		
+	}
 
 	public Collider getCollider() {
 		return collider;
@@ -178,7 +199,6 @@ public abstract class Mobil extends Object2D implements IMobil {
 	public void setReceiveCollision(boolean b){
 		receiveCollision = b;
 	}
-
 
 	public double getPower() {
 		return power;
@@ -198,5 +218,6 @@ public abstract class Mobil extends Object2D implements IMobil {
 	public boolean getMobible(){
 		return mobible;
 	}
+
 }
 	

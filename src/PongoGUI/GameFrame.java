@@ -51,24 +51,33 @@ public class GameFrame extends JFrame {
 		gameArea = new GameField(resolution[0], resolution[1], new BorderLayout(0,0));
 		getContentPane().add(gameArea, BorderLayout.CENTER);
 		
-		
 		requestFocus();
 		this.addKeyListener(new KeyListener() {
 
 	        @Override
 	        public void keyTyped(KeyEvent e) {
 //	            System.out.println(e.getKeyCode());
+
+	        	 controller.recieveKeyPressed(e.getKeyCode());
+	        	// controller.movement();
 	        }
 
 	        @Override
 	        public void keyPressed(KeyEvent e) {
-	        	 controller.receiveKeyMenssage(e.getKeyCode());
+//	            System.out.println(e.getKeyCode());
+	        	controller.recieveKeyPressed(e.getKeyCode());
+	        //	controller.movement();
+
 	        }
 
 	        @Override
 	        public void keyReleased(KeyEvent e) {
 //	            System.out.println(e.getKeyCode());
+
+	        	controller.recieveKeyReleased(e.getKeyCode());
+	        //	controller.movement();
 	        }
+	        
 	    });
 	}
 	
@@ -105,12 +114,22 @@ public class GameFrame extends JFrame {
 	}	
 	
 	
-	// ------------------------------- Pruebas
 	
-
-	public static void main (String[] args) throws InterruptedException{
+	public void scorePlayer1(){
 		
+		((GameField)gameArea).scorePlayer(0);
 		
+	}
+	
+	public void scorePlayer2(){
+		
+		((GameField)gameArea).scorePlayer(1);
+		
+	}
+	
+	public void resetScores(){
+		
+		((GameField)gameArea).reset();
 		
 	}
 
@@ -118,6 +137,17 @@ public class GameFrame extends JFrame {
 		this.controller = controller;		
 	}
 	
+		
+	// ------------------------------- Pruebas
+	
+
+
+	
+	public PongoMain getController(){
+		
+		return controller;
+		
+	}
 	
 
 }
