@@ -134,10 +134,7 @@ public abstract class Mobil extends Object2D{
 	
 	public void move(boolean moving) {
 		
-		//if(moving == true){
-		
-		System.out.println("Velocidades: " + speedX + ", " + speedY + ", dirX e Y " + dirX + ", " + dirY);
-		
+		//if(moving == true){		
 			speedX = 10;
 			speedY = 10;
 			

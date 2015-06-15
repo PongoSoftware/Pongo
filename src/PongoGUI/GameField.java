@@ -4,7 +4,9 @@ import javax.swing.*;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +20,8 @@ public class GameField extends JPanel { // Area o campo donde se desarrolla el j
 	
 	private int[] resolution;
 	private List toDraw;
+	
+	private int[] score;
 	
 	// ----------------------------------- Constructores
 	
@@ -36,6 +40,10 @@ public class GameField extends JPanel { // Area o campo donde se desarrolla el j
 		
 		setBackground(Color.RED);
 		
+		score = new int[2];
+		score[0] = 0;
+		score[1] = 0;
+		
 	}
 	
 	// ------------------------------------ Métodos y funcionalidad
@@ -46,6 +54,12 @@ public class GameField extends JPanel { // Area o campo donde se desarrolla el j
 		
 //		System.out.println(toDraw.size());
 //		System.out.println(toDraw.isEmpty());
+		
+		Graphics2D g2 = (Graphics2D)g;
+		Font f = new  Font ("SansSerif", Font.BOLD, 200); 
+        g2.setFont(f);
+        g2.setColor(Color.PINK);
+		g2.drawString((score[0] + " - " + score[1]), 200, 350);
 		
 		if(toDraw.isEmpty() == false){
 		
@@ -94,6 +108,19 @@ public class GameField extends JPanel { // Area o campo donde se desarrolla el j
 		
 		toDraw.remove(nStopDraw);
 		
+	}
+	
+	public void scorePlayer(int play){
+		
+		score[play]++;
+		
+	}
+	
+	public void reset(){
+		
+		score[0] = 0;
+		score[1] = 0;
+				
 	}
 	
 	
