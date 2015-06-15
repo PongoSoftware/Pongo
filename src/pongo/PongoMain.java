@@ -117,7 +117,7 @@ public class PongoMain {
 		int posx = panelx / 2 - discSize / 2;
 		int posy = (botton - top)  / 2 - discSize / 2;
 		disc = new Disc(posx, posy, discSize, discSize, top, rigth, botton, left);
-		
+		((Disc)disc).setController(this);
 		int[][] tmpGoals = {{beginGoal, endGoal, left},{beginGoal, endGoal, rigth}};
 		
 		goals = tmpGoals;
@@ -261,6 +261,13 @@ public class PongoMain {
 		
 		((Racket)rackets[0]).move(true);
 		((Racket)rackets[1]).move(true);
+	}
+
+	public void receiveGoal(int i) {
+		//Recibe gol: 
+		// 0 = porteria izquierda
+		// 1 = porteria derecha
+		
 	}
 		
 }

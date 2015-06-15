@@ -10,7 +10,7 @@ public abstract class Mobil extends Object2D implements IMobil {
 	protected int acelerationx;
 	protected int acelerationy;
 	protected int top,rigth,botton,left;
-	private Collider collider;
+	protected Collider collider;
 	protected boolean receiveCollision = false;
 	protected double power;
 	protected double aceleration, acelerationX, acelerationY;
@@ -136,6 +136,12 @@ public abstract class Mobil extends Object2D implements IMobil {
 	}
 	
 	public void speedMove(){
+		if (speedX > 60 ) {
+			speedX = 60;
+		}
+		if (speedY > 60 ) {
+			speedY = 60;
+		}
 		posx += speedX;
 		posy += speedY;
 	}
@@ -145,6 +151,7 @@ public abstract class Mobil extends Object2D implements IMobil {
 		collider.setRectCircle(posx,  posy, width, height);
 	}
 	
+	@Override
 	public void moveAceleration(){
 		aceleration();
 		speedMove();
