@@ -82,8 +82,8 @@ public class PongoMain {
 		rigth = panelx - discSize;
 		
 		widthField = 10;
-		heightField = (int) (((botton - top) - discSize * 2 ) / 2) ;
-		middle = (int) (top + heightField + discSize * 2) + 1;
+		heightField = (int) (((botton - top) - discSize * 3 ) / 2) ;
+		middle = (int) (top + heightField + discSize * 3) + 1;
 		fieldLimit[0] = new FieldLimit(left, top, widthField, heightField);
 		fieldLimit[1] = new FieldLimit(rigth, top, widthField, heightField);
 		fieldLimit[2] = new FieldLimit(left, middle, widthField, heightField); 

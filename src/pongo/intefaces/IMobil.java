@@ -8,7 +8,7 @@ public interface IMobil {
 		
 		public void setSpeedY(int miSpeedY);
 			
-		public int getSpeedX();
+		public double getSpeedX();
 
 		public double getSpeedY();
 

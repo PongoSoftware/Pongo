@@ -5,8 +5,7 @@ import pongo.physics.Collider;
 
 public abstract class Mobil extends Object2D implements IMobil {
 
-	protected int speedX;
-	protected int speedY;
+	protected double speedX, speedY;
 	protected int acelerationx;
 	protected int acelerationy;
 	protected int top,rigth,botton,left;
@@ -75,7 +74,7 @@ public abstract class Mobil extends Object2D implements IMobil {
 		speedY = miSpeedY;
 	}
 		
-	public int getSpeedX() {
+	public double getSpeedX() {
 		return speedX;
 	}
 
@@ -114,6 +113,7 @@ public abstract class Mobil extends Object2D implements IMobil {
 	public void aceleration(){		
 		double acePos = Math.abs(aceleration); 
 		double aceNeg = acePos * -1;
+//		System.out.println(acePos+"_"+aceNeg);
 		
 		if (speedX > 0){
 			acelerationX = aceNeg;
@@ -130,17 +130,27 @@ public abstract class Mobil extends Object2D implements IMobil {
 		}else {
 			acelerationY = 0;
 		}
+
+//		System.out.println(acelerationX);
 		
 		speedX += acelerationX / 2d;
 		speedY += acelerationY / 2d;
+		
+//		System.out.println(speedX);
 	}
 	
 	public void speedMove(){
-		if (speedX > 60 ) {
-			speedX = 60;
+		int limit = 30;
+		int limitNeg = limit * -1;
+		if (speedX > limit ) {
+			speedX = limit;
+		} else if (speedX < limitNeg){
+			speedX = limitNeg;
 		}
-		if (speedY > 60 ) {
-			speedY = 60;
+		if (speedY > limit ) {
+			speedY = limit;
+		} else if (speedY < limitNeg){
+			speedY = limitNeg;
 		}
 		posx += speedX;
 		posy += speedY;

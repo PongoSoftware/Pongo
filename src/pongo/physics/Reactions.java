@@ -32,6 +32,7 @@ public class Reactions {
 			int distance = Utils.calcDistance(centerAx, centerAy, centerBx, centerBy);
 			double cosX = ((double) distanceX) / ((double) distance);
 			double cosY = ((double) distanceY) / ((double) distance);
+//			System.out.println(cosX+"_");
 			object2.receivePower(cosX,cosY,object.getPower());
 		} else {
 			object2.setX((int) (object2.getX() + distanceX / magicNum));
