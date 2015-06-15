@@ -1,9 +1,8 @@
 package pongo;
 
-import pongo.intefaces.IMobil;
 import pongo.physics.Collider;
 
-public abstract class Mobil extends Object2D implements IMobil {
+public abstract class Mobil extends Object2D {
 
 	protected double speedX, speedY;
 	protected int acelerationx;
@@ -13,11 +12,6 @@ public abstract class Mobil extends Object2D implements IMobil {
 	protected boolean receiveCollision = false;
 	protected double power;
 	protected double aceleration, acelerationX, acelerationY;
-	private boolean mobible;
-	protected int dirX; // 1 y -1 
-	protected int dirY;
-	protected boolean moveX;
-	protected boolean moveY; 	
 	
 	//---------------Constructor---------------
 
@@ -161,7 +155,6 @@ public abstract class Mobil extends Object2D implements IMobil {
 		collider.setRectCircle(posx,  posy, width, height);
 	}
 	
-	@Override
 	public void moveAceleration(){
 		aceleration();
 		speedMove();
@@ -193,31 +186,6 @@ public abstract class Mobil extends Object2D implements IMobil {
 		height = miAlto;
 		collider.setRectCircle(posx,  posy, width, height);
 	}
-	
-	public void move(boolean moving) {
-		
-		//if(moving == true){		
-			speedX = 10;
-			speedY = 10;
-			
-			posx += (speedX * dirX);
-			posy += (speedY * dirY);
-			collider.setRectCircle(posx,  posy, width, height);	
-			
-		//}
-	}
-	
-	public void moveX(int x){
-		
-		dirX = x;
-		
-	}
-	
-	public void moveY(int y){
-		
-		dirY = y;
-		
-	}
 
 	public Collider getCollider() {
 		return collider;
@@ -241,12 +209,5 @@ public abstract class Mobil extends Object2D implements IMobil {
 //		System.out.println(speedX+"_"+speedY);
 	}
 	
-	public void setMobible(boolean b){
-		mobible = b;
-	}
-	
-	public boolean getMobible(){
-		return mobible;
-	}
 }
 	

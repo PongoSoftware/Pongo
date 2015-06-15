@@ -197,29 +197,29 @@ public class PongoMain {
 		switch(keyCode){
 		
 		case 37:
-			((Racket) rackets[1]).moveX(-1);
+			((Racket) rackets[1]).moveKeyX(-1);
 			break;
 		case 38:
-			((Racket) rackets[1]).moveY(-1);
+			((Racket) rackets[1]).moveKeyY(-1);
 			break;
 		case 39:
-			((Racket) rackets[1]).moveX(1);
+			((Racket) rackets[1]).moveKeyX(1);
 			break;
 		case 40:
-			((Racket) rackets[1]).moveY(1);
+			((Racket) rackets[1]).moveKeyY(1);
 			break;
 			
 		case 65:
-			((Racket) rackets[0]).moveX(-1);
+			((Racket) rackets[0]).moveKeyX(-1);
 			break;
 		case 87:
-			((Racket) rackets[0]).moveY(-1);
+			((Racket) rackets[0]).moveKeyY(-1);
 			break;
 		case 68:
-			((Racket) rackets[0]).moveX(1);
+			((Racket) rackets[0]).moveKeyX(1);
 			break;
 		case 83:
-			((Racket) rackets[0]).moveY(1);
+			((Racket) rackets[0]).moveKeyY(1);
 			break;
 		}
 		
@@ -229,29 +229,29 @@ public class PongoMain {
 		switch(keyCode){
 		
 		case 37:
-			((Racket) rackets[1]).moveX(0);
+			((Racket) rackets[1]).moveKeyX(0);
 			break;
 		case 38:
-			((Racket) rackets[1]).moveY(0);
+			((Racket) rackets[1]).moveKeyY(0);
 			break;
 		case 39:
-			((Racket) rackets[1]).moveX(0);
+			((Racket) rackets[1]).moveKeyX(0);
 			break;
 		case 40:
-			((Racket) rackets[1]).moveY(0);
+			((Racket) rackets[1]).moveKeyY(0);
 			break;
 			
 		case 65:
-			((Racket) rackets[0]).moveX(0);
+			((Racket) rackets[0]).moveKeyX(0);
 			break;
 		case 87:
-			((Racket) rackets[0]).moveY(0);
+			((Racket) rackets[0]).moveKeyY(0);
 			break;
 		case 68:
-			((Racket) rackets[0]).moveX(0);
+			((Racket) rackets[0]).moveKeyX(0);
 			break;
 		case 83:
-			((Racket) rackets[0]).moveY(0);
+			((Racket) rackets[0]).moveKeyY(0);
 			break;
 			
 		}
@@ -259,8 +259,8 @@ public class PongoMain {
 	
 	public void movement(){
 		
-		((Racket)rackets[0]).move(true);
-		((Racket)rackets[1]).move(true);
+		((Racket)rackets[0]).moveKey(true);
+		((Racket)rackets[1]).moveKey(true);
 	}
 
 	public void receiveGoal(int i) {
