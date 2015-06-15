@@ -18,10 +18,13 @@ public class PongoMain {
 	Background back;
 	
 	public PongoMain(int numPlayers){
-		int top, rigth, botton, left;
+		int top, rigth, middle, botton, left, beginGoal, endGoal;
 		int speedGame = 36;
 		
 		int panelx, panely, framex, framey;
+		
+		int[][] goals;
+		
 		framex = 800;
 		framey = 600;
 		panelx = framex - 10;
@@ -71,7 +74,7 @@ public class PongoMain {
 		disc = new Disc(posx, posy, discSize, discSize,panelx,panely);
 >>>>>>> FernandoCuidao*/
 		
-		fieldLimit = new FieldLimit[4];
+		fieldLimit = new FieldLimit[6];
 		widthField = panelx;
 		top = 0;
 		botton = panely - discSize;
@@ -79,35 +82,47 @@ public class PongoMain {
 		rigth = panelx - discSize;
 		
 		widthField = 10;
-		heightField = panely;
+		heightField = (int) (((botton - top) - discSize * 2 ) / 2) ;
+		middle = (int) (top + heightField + discSize * 2) + 1;
 		fieldLimit[0] = new FieldLimit(left, top, widthField, heightField);
-		fieldLimit[1] = new FieldLimit(rigth, top, widthField, heightField); 
+		fieldLimit[1] = new FieldLimit(rigth, top, widthField, heightField);
+		fieldLimit[2] = new FieldLimit(left, middle, widthField, heightField); 
+		fieldLimit[3] = new FieldLimit(rigth, middle, widthField, heightField); 
+		
+		beginGoal = top + heightField;
+		endGoal = middle;
 		
 		widthField = panelx;
 		heightField = 10;		
-		fieldLimit[2] = new FieldLimit(left, top, widthField, heightField);		
-		fieldLimit[3] = new FieldLimit(left, botton, widthField, heightField); 
+		fieldLimit[4] = new FieldLimit(left, top, widthField, heightField);
+		fieldLimit[5] = new FieldLimit(left, botton, widthField, heightField); 
 		
 		
 		
 		goal = new Goal[numPlayers];
 		posxGoal = left + 20;
 		posyGoal =  panely / 2 - heightGoal / 2;
-		goal[0] = new Goal(posxGoal, posyGoal, widthGoal, heightGoal);
+		goal[0] = new Goal(posxGoal, beginGoal, widthGoal, endGoal - beginGoal);
 		posxGoal = rigth - 20;
-		goal[1] = new Goal(posxGoal, posyGoal, widthGoal, heightGoal);
+		goal[1] = new Goal(posxGoal, beginGoal, widthGoal,endGoal - beginGoal);
 
 		
 		for (int i = 0; i < numPlayers; i++){
 			int posx = panelx / 3 * (i + 1) - racketwidth / 2;
-			int posy = panely / 2 - racketheight / 2;
+			int posy = (botton - top) / 2 - racketheight / 2;
 			rackets[i] = new Racket(posx, posy, racketwidth, racketheight, top, rigth, botton, left);
 		}
 		
 		
 		int posx = panelx / 2 - discSize / 2;
-		int posy = panely / 2 - discSize / 2;
+		int posy = (botton - top)  / 2 - discSize / 2;
 		disc = new Disc(posx, posy, discSize, discSize, top, rigth, botton, left);
+		
+		int[][] tmpGoals = {{beginGoal, endGoal, left},{beginGoal, endGoal, rigth}};
+		
+		goals = tmpGoals;
+		
+		((Disc)disc).setGoal(goals);
 				
 		back = new Background();
 		
@@ -127,6 +142,8 @@ public class PongoMain {
 		frame.drawGameObject(fieldLimit[1]);
 		frame.drawGameObject(fieldLimit[2]);
 		frame.drawGameObject(fieldLimit[3]);
+		frame.drawGameObject(fieldLimit[4]);
+		frame.drawGameObject(fieldLimit[5]);
 		
 //		boolean sigueJuego = false;
 		boolean sigueJuego = true;
@@ -140,7 +157,9 @@ public class PongoMain {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			} finally {
-				((Mobil) disc).move();
+				((Mobil) disc).moveAceleration();
+				((Mobil) rackets[0]).move();
+				((Mobil) rackets[1]).move();
 				Collider.checkCollisionList();
 			}
 		}while(sigueJuego);

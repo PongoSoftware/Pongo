@@ -9,7 +9,7 @@ public class Reactions {
 		int centerAy = object.getCollider().getCentery();
 		int centerBx = object2.getCollider().getCenterx();
 		int centerBy = object2.getCollider().getCentery();
-		int magicNum = 12;
+		int magicNum = 10;
 		
 		int distanceX = centerAx-centerBx;
 		int distanceY =centerAy-centerBy;

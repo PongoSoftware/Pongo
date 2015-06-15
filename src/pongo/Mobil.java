@@ -94,9 +94,24 @@ public abstract class Mobil extends Object2D implements IMobil {
 		posy = y;
 		collider.setRectCircle(posx,  posy, width, height);
 	}
+	public void limitMove(){
+		if ((posx  ) < left ) {
+			speedX = speedX * -1;
+			posx = left;
+		} else if ((posx + width) > rigth){
+			speedX = speedX * -1;
+			posx = rigth - width;
+		}
+		if ((posy) < top ) {
+			speedY = speedY * -1;
+			posy = top;
+		}else if ((posy + height) > botton){
+			speedY = speedY * -1;
+			posy = botton - height;
+		}
+	}
 	
-	public void move(){
-		
+	public void aceleration(){		
 		double acePos = Math.abs(aceleration); 
 		double aceNeg = acePos * -1;
 		
@@ -118,26 +133,25 @@ public abstract class Mobil extends Object2D implements IMobil {
 		
 		speedX += acelerationX / 2d;
 		speedY += acelerationY / 2d;
-		
+	}
+	
+	public void speedMove(){
 		posx += speedX;
 		posy += speedY;
-		if ((posx - width ) < left ) {
-			speedX = speedX * -1;
-			posx = left + width;
-		} else if ((posx + width) > rigth){
-			speedX = speedX * -1;
-			posx = rigth - width;
-		}
-		if ((posy - height) < top ) {
-			speedY = speedY * -1;
-			posy = top + height;
-		}else if ((posy + height) > botton){
-			speedY = speedY * -1;
-			posy = botton - height;
-		}	
-		
+	}
+	
+	public void move(){
+		limitMove();
 		collider.setRectCircle(posx,  posy, width, height);
 	}
+	
+	public void moveAceleration(){
+		aceleration();
+		speedMove();
+		limitMove();
+		collider.setRectCircle(posx,  posy, width, height);
+	}
+	
 	
 	@Override
 	public void setX(int miX){

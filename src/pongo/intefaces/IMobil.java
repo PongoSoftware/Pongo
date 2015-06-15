@@ -15,6 +15,14 @@ public interface IMobil {
 		public void setSpeed(int x, int y);
 		
 		public void move();
+		
+		public void moveAceleration();
+		
+		void aceleration();
+		
+		void speedMove();
+		
+		void limitMove();
 			
 		public void setReceiveCollision(boolean b);
 		
