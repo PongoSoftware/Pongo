@@ -9,6 +9,8 @@ import javax.swing.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -20,6 +22,7 @@ public class GameFrame extends JFrame {
 	private Background back;
 	
 	private JPanel gameArea;
+	private PongoMain controller;
 	
 	// --------------------------------------- Constructores
 	
@@ -49,6 +52,31 @@ public class GameFrame extends JFrame {
 		getContentPane().add(gameArea, BorderLayout.CENTER);
 		
 		
+		requestFocus();
+		this.addKeyListener(new KeyListener() {
+
+	        @Override
+	        public void keyTyped(KeyEvent e) {
+//	            System.out.println(e.getKeyCode());
+	        	 controller.recieveKeyPressed(e.getKeyCode());
+	        	// controller.movement();
+	        }
+
+	        @Override
+	        public void keyPressed(KeyEvent e) {
+//	            System.out.println(e.getKeyCode());
+	        	controller.recieveKeyPressed(e.getKeyCode());
+	        //	controller.movement();
+	        }
+
+	        @Override
+	        public void keyReleased(KeyEvent e) {
+//	            System.out.println(e.getKeyCode());
+	        	controller.recieveKeyReleased(e.getKeyCode());
+	        //	controller.movement();
+	        }
+	        
+	    });
 	}
 	
 	//------------------------------------ Métodos y Funcionalidad
@@ -86,14 +114,17 @@ public class GameFrame extends JFrame {
 	
 	// ------------------------------- Pruebas
 	
-	/*
-	 * 
+
 	public static void main (String[] args) throws InterruptedException{
 		
 		
 		
 	}
+
+	public void setController(PongoMain controller) {
+		this.controller = controller;		
+	}
 	
-	*/
+	
 
 }
