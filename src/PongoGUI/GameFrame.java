@@ -1,23 +1,29 @@
 package PongoGUI;
 
 
-import pongo.*;
-import pongo.physics.*;
-
-import javax.swing.*;
-
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.List;
-import java.util.ArrayList;
 
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import pongo.Object2D;
+import pongo.PongoMain;
+
+/**
+ * @author fgsebares
+ * @version v0.1
+ * @since 2015/06/16 *
+ */
 public class GameFrame extends JFrame {
 
 	// --------------------------------------- Atributos
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int[] resolution; // 0 es ancho, 1 es alto.
 	private Background back;
 	
@@ -28,6 +34,11 @@ public class GameFrame extends JFrame {
 	
 	// --------------------------------------- Constructores
 	
+	/**
+	 * @param width
+	 * @param height
+	 * @param nBack
+	 */
 	public GameFrame(int width,int height, Background nBack){
 	
 		setLayout(null);
@@ -35,8 +46,6 @@ public class GameFrame extends JFrame {
 		resolution = new int [2];
 		resolution[0] = width;
 		resolution[1] = height;
-		
-		//setBounds(resolution[0], resolution[1], (resolution[0] * (int)(2f/3f)), resolution[1]);
 		
 		setSize(resolution[0], resolution[1]);
 		
@@ -49,7 +58,6 @@ public class GameFrame extends JFrame {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		//gameArea = new GameField((int)(resolution[0] * 2f/3f), (int)(resolution[1] * resolution[1] * 27f/30f));
 		gameArea = new GameField(resolution[0], resolution[1], new BorderLayout(0,0));
 		getContentPane().add(gameArea, BorderLayout.CENTER);
 				
@@ -62,26 +70,20 @@ public class GameFrame extends JFrame {
 
 	        @Override
 	        public void keyTyped(KeyEvent e) {
-//	            System.out.println(e.getKeyCode());
 
 	        	 controller.recieveKeyPressed(e.getKeyCode());
-	        	// controller.movement();
 	        }
 
 	        @Override
 	        public void keyPressed(KeyEvent e) {
-//	            System.out.println(e.getKeyCode());
 	        	controller.recieveKeyPressed(e.getKeyCode());
-	        //	controller.movement();
 
 	        }
 
 	        @Override
 	        public void keyReleased(KeyEvent e) {
-//	            System.out.println(e.getKeyCode());
 
 	        	controller.recieveKeyReleased(e.getKeyCode());
-	        //	controller.movement();
 	        }
 	        
 	    });
@@ -89,30 +91,45 @@ public class GameFrame extends JFrame {
 	
 	//------------------------------------ Métodos y Funcionalidad
 	
+	/**
+	 * 
+	 */
 	public void launch(){
 		
 		setVisible(true);
 		
 	}
 	
+	/* (sin Javadoc)
+	 * @see java.awt.Component#repaint()
+	 */
 	public void repaint(){
 		
 		gameArea.repaint();
 		
 	}
 	
+	/**
+	 * @param nToDraw
+	 */
 	public void drawGameObject(Object2D nToDraw){
 		
 		((GameField)gameArea).draw(nToDraw);
 		
 	}
 	
+	/**
+	 * @param nToDraw
+	 */
 	public void drawUI(Object2D nToDraw){
 		
 		
 		
 	}
 	
+	/**
+	 * @param nStopDraw
+	 */
 	public void stopDraw(Object2D nStopDraw){
 		
 		((GameField)gameArea).stopDraw(nStopDraw);
@@ -121,6 +138,9 @@ public class GameFrame extends JFrame {
 	
 	
 	
+	/**
+	 * 
+	 */
 	public void scorePlayer1(){
 		
 		score[0]++;		
@@ -135,6 +155,9 @@ public class GameFrame extends JFrame {
 		
 	}
 	
+	/**
+	 * 
+	 */
 	public void scorePlayer2(){
 		
 		score[1]++;		
@@ -148,12 +171,18 @@ public class GameFrame extends JFrame {
 		
 	}
 	
+	/**
+	 * 
+	 */
 	public void resetScores(){
 		
 		((GameField)gameArea).reset();
 		
 	}
 
+	/**
+	 * @param controller
+	 */
 	public void setController(PongoMain controller) {
 		this.controller = controller;		
 	}
@@ -164,6 +193,9 @@ public class GameFrame extends JFrame {
 
 
 	
+	/**
+	 * @return
+	 */
 	public PongoMain getController(){
 		
 		return controller;

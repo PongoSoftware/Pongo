@@ -1,23 +1,30 @@
 package PongoGUI;
 
-import javax.swing.*;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
 
-import pongo.*;
-import pongo.physics.*;
+import javax.swing.JPanel;
 
+import pongo.Object2D;
+
+/**
+ * @author fgsebares
+ * @version v0.1
+ * @since 2015/06/16 *
+ */
 public class GameField extends JPanel { // Area o campo donde se desarrolla el juego
 
 	// ----------------------------------- Atributos
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int[] resolution;
 	private List toDraw;
 	
@@ -25,6 +32,11 @@ public class GameField extends JPanel { // Area o campo donde se desarrolla el j
 	
 	// ----------------------------------- Constructores
 	
+	/**
+	 * @param width
+	 * @param height
+	 * @param border
+	 */
 	GameField(int width, int height, BorderLayout border){
 		
 		super(border);
@@ -48,12 +60,12 @@ public class GameField extends JPanel { // Area o campo donde se desarrolla el j
 	
 	// ------------------------------------ Métodos y funcionalidad
 	
+	/* (sin Javadoc)
+	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+	 */
 	public void paintComponent(Graphics g){
 		
 		super.paintComponent(g);
-		
-//		System.out.println(toDraw.size());
-//		System.out.println(toDraw.isEmpty());
 		
 		Graphics2D g2 = (Graphics2D)g;
 		Font f = new  Font ("SansSerif", Font.BOLD, 200); 
@@ -98,24 +110,36 @@ public class GameField extends JPanel { // Area o campo donde se desarrolla el j
 		}
 	}
 	
+	/**
+	 * @param nToDraw
+	 */
 	public void draw(Object2D nToDraw){
 		
 		toDraw.add(nToDraw);
 		
 	}
 	
+	/**
+	 * @param nStopDraw
+	 */
 	public void stopDraw(Object2D nStopDraw){
 		
 		toDraw.remove(nStopDraw);
 		
 	}
 	
+	/**
+	 * @param play
+	 */
 	public void scorePlayer(int[] play){
 		
 		score = play;
 		
 	}
 	
+	/**
+	 * 
+	 */
 	public void reset(){
 		
 		score[0] = 0;

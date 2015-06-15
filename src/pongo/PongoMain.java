@@ -1,15 +1,17 @@
 package pongo;
 
-import java.awt.Component;
-
-
 import java.awt.event.WindowEvent;
 
-import javafx.scene.input.KeyCode;
 import pongo.physics.Collider;
 import PongoGUI.Background;
 import PongoGUI.GameFrame;
 
+/**
+ * @author  jfernandez
+ * @version v0.1
+ * @since 2015/06/16
+ *
+ */
 public class PongoMain {
 	
 	private static boolean nextGame = true;
@@ -23,73 +25,53 @@ public class PongoMain {
 	
 	boolean sigueJuego;
 	
+	/**
+	 * @param numPlayers
+	 */
 	public PongoMain(int numPlayers){
+		
 		int top, rigth, middle, botton, left, beginGoal, endGoal;
+		int fieldSizex, fieldSizey, framex, framey;
+		int racketwidth, racketheight, discSize;
+		int widthGoal;
+		int widthField, heightField;
+		int posxGoal, posxDisc, posyDisc;
+		
 		int speedGame = 36;
-		
-		int panelx, panely, framex, framey;
-		
+				
 		int[][] goals;
+		rackets = new Racket[numPlayers];
+		fieldLimit = new FieldLimit[6];
 		
+		//Tamaño de la ventana
 		framex = 800;
 		framey = 600;
-		panelx = framex - 10;
-		panely = framey - 30;
+		//Tamaño del campo.
+		fieldSizex = framex - 10;
+		fieldSizey = framey - 30;
 			
-		int racketwidth = 65;
-		int racketheight = 65;
-
-		rackets = new Racket[numPlayers];
-		int discSize = 55;
+		//Tamaño de la raqueta
+		racketwidth = 65;
+		racketheight = 65;
 		
-		int widthGoal = 5;
-		int heightGoal = 60;
-		int marginGoalx = 5;
-		int marginGoaly = 0;
+		//Tamaño del disco
+		discSize = 55;		
 		
-
-		int widthField = 10;
-		int heightField = 10;
+		//Tamaño de porterías y límite del campo
+		widthGoal = 5;
+		widthField = 10;
+		heightField = 10;
 		
-		int marginFieldx = discSize;
-		int marginFieldy = 0;
-		
-//<<<<<<< HEAD
-		int posxGoal, posyGoal;
-		
-/*=======
-		field = new Field(marginFieldx, marginFieldy, widthFieldx, heightFieldx); 
-		
-		goal = new Goal[numPlayers];
-		
-		for (int i = 0; i < numPlayers; i++){
-			int posx = panelx / 3 * (i + 1) - racketwidth / 2;
-			int posy = panely / 2 - racketheight / 2;
-			rackets[i] = new Racket(posx, posy, racketwidth, racketheight,panelx,panely);
-			int posxGoal = panelx * i - marginFieldx / 2 - widthGoal * i * 2;
-//			if (i == 1){
-//				posxGoal = panelx * i - marginFieldx / 2;
-//			}
-			int posyGoal = panely / 2 - heightGoal / 2;
-			goal[i] = new Goal(posxGoal, posyGoal, widthGoal, heightGoal);
-		}
-		
-		int discSize = 30;
-		int posx = panelx / 2 - discSize / 2;
-		int posy = panely / 2 - discSize / 2;
-		disc = new Disc(posx, posy, discSize, discSize,panelx,panely);
->>>>>>> FernandoCuidao*/
-		
-		fieldLimit = new FieldLimit[6];
-		widthField = panelx;
+		widthField = fieldSizex;
 		top = 0;
-		botton = panely - discSize;
+		botton = fieldSizey - discSize;
 		left = discSize;
-		rigth = panelx - discSize;
+		rigth = fieldSizex - discSize;
 		
 		widthField = 10;
 		heightField = (int) (((botton - top) - discSize * 3 ) / 2) ;
 		middle = (int) (top + heightField + discSize * 3) + 1;
+		//Creo límites del campo
 		fieldLimit[0] = new FieldLimit(left, top, widthField, heightField);
 		fieldLimit[1] = new FieldLimit(rigth, top, widthField, heightField);
 		fieldLimit[2] = new FieldLimit(left, middle, widthField, heightField); 
@@ -98,31 +80,30 @@ public class PongoMain {
 		beginGoal = top + heightField;
 		endGoal = middle;
 		
-		widthField = panelx;
+		widthField = fieldSizex;
 		heightField = 10;		
 		fieldLimit[4] = new FieldLimit(left, top, widthField, heightField);
 		fieldLimit[5] = new FieldLimit(left, botton, widthField, heightField); 
 		
 		
-		
+		// Creo porterias
 		goal = new Goal[numPlayers];
 		posxGoal = left + 20;
-		posyGoal =  panely / 2 - heightGoal / 2;
 		goal[0] = new Goal(posxGoal, beginGoal, widthGoal, endGoal - beginGoal);
 		posxGoal = rigth - 20;
 		goal[1] = new Goal(posxGoal, beginGoal, widthGoal,endGoal - beginGoal);
 
-		
+		//Creo raquetas
 		for (int i = 0; i < numPlayers; i++){
-			int posx = panelx / 3 * (i + 1) - racketwidth / 2;
+			int posx = fieldSizex / 3 * (i + 1) - racketwidth / 2;
 			int posy = (botton - top) / 2 - racketheight / 2;
 			rackets[i] = new Racket(posx, posy, racketwidth, racketheight, top, rigth, botton, left);
 		}
 		
-		
-		int posx = panelx / 2 - discSize / 2;
-		int posy = (botton - top)  / 2 - discSize / 2;
-		disc = new Disc(posx, posy, discSize, discSize, top, rigth, botton, left);
+		//Creo disco
+		posxDisc =  fieldSizex / 2 - discSize / 2;
+		posyDisc = (botton - top)  / 2 - discSize / 2;
+		disc = new Disc(posxDisc, posyDisc, discSize, discSize, top, rigth, botton, left);
 		((Disc)disc).setController(this);
 		int[][] tmpGoals = {{beginGoal, endGoal, left},{beginGoal, endGoal, rigth}};
 		
@@ -131,11 +112,7 @@ public class PongoMain {
 		((Disc)disc).setGoal(goals);
 				
 		back = new Background();
-		
-//		rackets[0].setPos(500,300);
-//		rackets[1].setPos(481,271);
-//		velocidad = 1000;
-		
+				
 		frame = new GameFrame(framex, framey, back);
 		frame.setController(this);
 		
@@ -175,25 +152,15 @@ public class PongoMain {
 
 	
 	
+	/**
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		int numPlayers = 2;
 		
 		while(nextGame == true){
 			PongoMain pongoMain = new PongoMain(numPlayers);
 		}
-		/*    Este era el while de prueba para repintar.
-		
-		while(true){
-			
-			frame.repaint();
-			
-			circ1.SetX((int)circ1.GetX()+1);
-			
-			Thread.sleep(30);
-			
-		}
-		
-		*/
 	}
 
 	
@@ -204,9 +171,11 @@ public class PongoMain {
 	 * 39 derecha
 	 * 40 abajo
 	 * @param keyCode
-<<<<<<< HEAD
 	 */
 
+	/**
+	 * @param keyCode
+	 */
 	public void recieveKeyPressed(int keyCode) {
 		switch(keyCode){
 		
@@ -254,6 +223,9 @@ public class PongoMain {
 		
 	}
 	
+	/**
+	 * @param keyCode
+	 */
 	public void recieveKeyReleased(int keyCode) {
 		switch(keyCode){
 		
@@ -286,20 +258,38 @@ public class PongoMain {
 		}
 	}
 	
+	/**
+	 * 
+	 */
 	public void movement(){
 		
 		((Racket)rackets[0]).moveKey(true);
 		((Racket)rackets[1]).moveKey(true);
 	}
 
+	/**
+	 * @param i
+	 */
 	public void receiveGoal(int i) {
 		//Recibe gol: 
 		// 0 = porteria izquierda
 		// 1 = porteria derecha
 		
+		if(i == 0){		   
+		   frame.scorePlayer1();
+		}else if(i == 1){		   
+		   frame.scorePlayer2();		   
+		}
+
+		((Mobil) disc).reset();
+		((Mobil) rackets[0]).reset();
+		((Mobil) rackets[1]).reset();
 	}
 	
 	
+	/**
+	 * @param player
+	 */
 	public void gameWon(int player){
 		
 		System.out.println("Ha ganado el Jugador " + player);
@@ -310,5 +300,5 @@ public class PongoMain {
 		sigueJuego = false;
 		
 	}
-		
+
 }

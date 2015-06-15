@@ -6,18 +6,35 @@ import java.util.Iterator;
 import pongo.Mobil;
 import pongo.Mobil;
 
+/**
+ * @author  jfernandez
+ * @version v0.1
+ * @since 2015/06/16
+ *
+ */
 public class Collider{
 
 	Mobil object;
 	int centerx, centery, initx, inity, endx, endy, radius;
+	/**
+	 * 
+	 */
 	static ArrayList<Collider> listCollider = new ArrayList();
 	
+	/**
+	 * @param obj
+	 */
 	public Collider(Mobil obj){
 		radius = -1;
 		object = obj;
 		listCollider.add(this);
 	}
 		
+	/**
+	 * @param centerx
+	 * @param centery
+	 * @param radius
+	 */
 	public void setCircle(int centerx, int centery, int radius){
 		this.centerx = centerx;
 		this.centery = centery;
@@ -25,6 +42,9 @@ public class Collider{
 		calcRect();
 	}
 	
+	/**
+	 * 
+	 */
 	private void calcRect(){
 		initx = centerx - radius;
 		inity = centery - radius;
@@ -32,6 +52,12 @@ public class Collider{
 		endy = centery + radius;
 	}
 	
+	/**
+	 * @param x
+	 * @param y
+	 * @param width
+	 * @param height
+	 */
 	public void setRect(int x, int y, int width, int height){
 		initx = x;
 		inity = y;
@@ -41,20 +67,38 @@ public class Collider{
 		calcCenter();
 	}
 	
+	/**
+	 * @param x
+	 * @param y
+	 * @param width
+	 * @param height
+	 */
 	public void setRectCircle(int x, int y, int width, int height){
 		setRect(x,y,width,height);
 		setIsCircle();
 	}
 	
+	/**
+	 * 
+	 */
 	public void setIsCircle(){
 		calcCircle();
 	}
 	
 	//Unused
+	/**
+	 * @param x
+	 * @param y
+	 * @param width
+	 * @param height
+	 */
 	private void calcCircle(int x, int y, int width, int height){
 		setRect(x,y,width,height);
 	}
 
+	/**
+	 * 
+	 */
 	public void calcCircle(){
 		if (initx >= inity) {
 			radius = (endx - initx) / 2;
@@ -65,20 +109,29 @@ public class Collider{
 		calcCenter();
 	}
 	
+	/**
+	 * 
+	 */
 	private void calcCenter(){
 		centerx = initx + (endx - initx) / 2; 
 		centery = inity + (endy - inity) / 2; 
 	}
 	
+	/**
+	 * 
+	 */
 	public static void checkCollisionList(){ //Check collision of all collider.
 		for (int i = 0; i < listCollider.size(); i++){
 			for (int k = i+1; k < listCollider.size(); k++){
 				boolean col = listCollider.get(i).checkCollision(listCollider.get(k));
-//				System.out.println(col);
 			}
 		}
 	}
 	
+	/**
+	 * @param collider
+	 * @return
+	 */
 	private boolean checkCollision(Collider collider){
 		boolean hasCollision = false;
 		int colInitx, colEndx, colInity, colEndy;
@@ -140,6 +193,13 @@ public class Collider{
 		return hasCollision;
 	}
 
+	/**
+	 * @param a1
+	 * @param a2
+	 * @param b1
+	 * @param b2
+	 * @return
+	 */
 	private boolean checkCollisionEje(int a1, int a2, int b1, int b2){
         if ( 
                 ((b1 >= a1) && (b1 <= a2)) ||
@@ -156,6 +216,17 @@ public class Collider{
         }		
 	}
 	
+	/**
+	 * @param object
+	 * @param object2
+	 * @param centerx
+	 * @param centery
+	 * @param radius
+	 * @param colCenterx
+	 * @param colCentery
+	 * @param colRadius
+	 * @return
+	 */
 	private boolean checkCollisionCircle(Mobil object, Mobil object2, int centerx, int centery,
 			int radius, int colCenterx, int colCentery, int colRadius) {
 		int distance = Utils.calcDistance(centerx, centery, colCenterx, colCentery);
@@ -167,6 +238,18 @@ public class Collider{
 		}
 	}
 	
+	/**
+	 * @param centerx
+	 * @param centery
+	 * @param initx
+	 * @param endx
+	 * @param inity
+	 * @param endy
+	 * @param colCenterx
+	 * @param colCentery
+	 * @param colRadius
+	 * @return
+	 */
 	private boolean checkColisionRectCircle(
 			int centerx, int centery, int initx, int endx, int inity, int endy, //El primero es un cuadrado
 			int colCenterx, int colCentery, int colRadius){ //El segundo es un circulo
@@ -187,59 +270,53 @@ public class Collider{
 		}
 	}
 	
+	/**
+	 * @return
+	 */
 	public int getCenterx() {
 		return centerx;
 	}
 
-//	public void setCenterx(int centerx) {
-//		this.centerx = centerx;
-//	}
-
+	/**
+	 * @return
+	 */
 	public int getCentery() {
 		return centery;
 	}
 
-//	public void setCentery(int centery) {
-//		this.centery = centery;
-//	}
-
+	/**
+	 * @return
+	 */
 	public int getInitx() {
 		return initx;
 	}
 
-//	public void setInitx(int initx) {
-//		this.initx = initx;
-//	}
-
+	/**
+	 * @return
+	 */
 	public int getInity() {
 		return inity;
 	}
 
-//	public void setInity(int inity) {
-//		this.inity = inity;
-//	}
-
+	/**
+	 * @return
+	 */
 	public int getEndx() {
 		return endx;
 	}
 
-//	public void setEndx(int endx) {
-//		this.endx = endx;
-//	}
-
+	/**
+	 * @return
+	 */
 	public int getEndy() {
 		return endy;
 	}
 
-//	public void setEndy(int endy) {
-//		this.endy = endy;
-//	}
-
+	/**
+	 * @return
+	 */
 	public int getRadius() {
 		return radius;
 	}
 
-//	public void setRadius(int radius) {
-//		this.radius = radius;
-//	}
 }
