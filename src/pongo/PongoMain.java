@@ -3,6 +3,8 @@ package pongo;
 import java.awt.Component;
 
 
+import java.awt.event.WindowEvent;
+
 import javafx.scene.input.KeyCode;
 import pongo.physics.Collider;
 import PongoGUI.Background;
@@ -10,12 +12,16 @@ import PongoGUI.GameFrame;
 
 public class PongoMain {
 	
+	private static boolean nextGame = true;
+	
 	GameFrame frame;
 	Object2D[] rackets;
 	Object2D disc;
 	Object2D[] fieldLimit;
 	Goal[] goal;
 	Background back;
+	
+	boolean sigueJuego;
 	
 	public PongoMain(int numPlayers){
 		int top, rigth, middle, botton, left, beginGoal, endGoal;
@@ -146,8 +152,8 @@ public class PongoMain {
 		frame.drawGameObject(fieldLimit[5]);
 		
 //		boolean sigueJuego = false;
-		boolean sigueJuego = true;
-		do{
+		sigueJuego = true;
+		while(sigueJuego){
 			
 			movement();
 			frame.repaint();
@@ -162,13 +168,19 @@ public class PongoMain {
 				((Mobil) rackets[1]).move();
 				Collider.checkCollisionList();
 			}
-		}while(sigueJuego);
+		}
+	
+		frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
 	}
 
+	
+	
 	public static void main(String[] args) {
 		int numPlayers = 2;
-		PongoMain pongoMain = new PongoMain(numPlayers);
 		
+		while(nextGame == true){
+			PongoMain pongoMain = new PongoMain(numPlayers);
+		}
 		/*    Este era el while de prueba para repintar.
 		
 		while(true){
@@ -184,6 +196,8 @@ public class PongoMain {
 		*/
 	}
 
+	
+	
 	/**
 	 * 37 izquierda
 	 * 38 arriba
@@ -221,6 +235,21 @@ public class PongoMain {
 		case 83:
 			((Racket) rackets[0]).moveKeyY(1);
 			break;
+			
+			// Para continuar o salir del juego.
+			
+		case 13: 
+			
+			sigueJuego = false;
+			nextGame = true;
+			break;
+			
+		case 27:
+			
+			sigueJuego = false;
+			nextGame = false;
+			break;
+			
 		}
 		
 	}
@@ -267,6 +296,18 @@ public class PongoMain {
 		//Recibe gol: 
 		// 0 = porteria izquierda
 		// 1 = porteria derecha
+		
+	}
+	
+	
+	public void gameWon(int player){
+		
+		System.out.println("Ha ganado el Jugador " + player);
+		
+		System.out.println("Pulsa Enter para seguir jugando, o Escape para salir");
+		
+		// Implementar reseteo.
+		sigueJuego = false;
 		
 	}
 		

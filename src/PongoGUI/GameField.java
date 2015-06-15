@@ -73,7 +73,7 @@ public class GameField extends JPanel { // Area o campo donde se desarrolla el j
 				size[0] =  ((Object2D) toDraw.get(i)).getWidth();
 				size[1] =  (int) ((Object2D) toDraw.get(i)).getHeight();				
 				
-				g.setColor(Color.yellow);
+				g.setColor(((Object2D)toDraw.get(i)).getColor());
 				
 				int type = ((Object2D)toDraw.get(i)).getType();
 				
@@ -110,9 +110,9 @@ public class GameField extends JPanel { // Area o campo donde se desarrolla el j
 		
 	}
 	
-	public void scorePlayer(int play){
+	public void scorePlayer(int[] play){
 		
-		score[play]++;
+		score = play;
 		
 	}
 	
