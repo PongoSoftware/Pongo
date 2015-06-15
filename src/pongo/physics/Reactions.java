@@ -39,4 +39,9 @@ public class Reactions {
 		}
 	}
 
+<<<<<<< HEAD
 }
+=======
+}
+
+>>>>>>> merge

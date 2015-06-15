@@ -3,7 +3,11 @@ package pongo;
 import pongo.physics.Collider;
 
 public abstract class Object2D {
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> merge
 	protected int type; // 0 es círculo, 1 es cuadrado, 2 es triángulo.
 	protected int posx; 
 	protected int posy;
@@ -48,11 +52,11 @@ public abstract class Object2D {
 	}
 	
 	public void setWidth(int miAncho){
-			width = miAncho;
+		width = miAncho;
 	}
 		
 	public int getWidth(){
-			return width;
+		return width;
 	}	
 	
 	public void setHeight(int miAlto){

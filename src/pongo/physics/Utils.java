@@ -8,4 +8,8 @@ public class Utils {
 		int distance = (int) Math.sqrt(square);
 		return distance;
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> merge

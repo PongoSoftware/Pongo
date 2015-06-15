@@ -2,6 +2,8 @@ package pongo;
 
 import java.awt.Component;
 
+
+import javafx.scene.input.KeyCode;
 import pongo.physics.Collider;
 import PongoGUI.Background;
 import PongoGUI.GameFrame;
@@ -43,7 +45,31 @@ public class PongoMain {
 		int marginFieldx = discSize;
 		int marginFieldy = 0;
 		
+//<<<<<<< HEAD
 		int posxGoal, posyGoal;
+		
+/*=======
+		field = new Field(marginFieldx, marginFieldy, widthFieldx, heightFieldx); 
+		
+		goal = new Goal[numPlayers];
+		
+		for (int i = 0; i < numPlayers; i++){
+			int posx = panelx / 3 * (i + 1) - racketwidth / 2;
+			int posy = panely / 2 - racketheight / 2;
+			rackets[i] = new Racket(posx, posy, racketwidth, racketheight,panelx,panely);
+			int posxGoal = panelx * i - marginFieldx / 2 - widthGoal * i * 2;
+//			if (i == 1){
+//				posxGoal = panelx * i - marginFieldx / 2;
+//			}
+			int posyGoal = panely / 2 - heightGoal / 2;
+			goal[i] = new Goal(posxGoal, posyGoal, widthGoal, heightGoal);
+		}
+		
+		int discSize = 30;
+		int posx = panelx / 2 - discSize / 2;
+		int posy = panely / 2 - discSize / 2;
+		disc = new Disc(posx, posy, discSize, discSize,panelx,panely);
+>>>>>>> FernandoCuidao*/
 		
 		fieldLimit = new FieldLimit[4];
 		widthField = panelx;
@@ -110,6 +136,7 @@ public class PongoMain {
 			frame.repaint();
 			try {
 				Thread.sleep(speedGame);
+
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			} finally {
@@ -144,7 +171,9 @@ public class PongoMain {
 	 * 39 derecha
 	 * 40 abajo
 	 * @param keyCode
+<<<<<<< HEAD
 	 */
+
 	public void recieveKeyPressed(int keyCode) {
 		switch(keyCode){
 		
@@ -213,7 +242,6 @@ public class PongoMain {
 		
 		((Racket)rackets[0]).move(true);
 		((Racket)rackets[1]).move(true);
-		
 	}
 		
 }

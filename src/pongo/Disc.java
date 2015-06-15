@@ -11,7 +11,6 @@ public class Disc extends Mobil  {
 		super(esX, esY, esAncho, esAlto, top, rigth, botton, left);
 		receiveCollision = true;
 		aceleration = 0.1;
-		receiveCollision = true;
 		type = 0;
 	}	
 }

@@ -16,15 +16,25 @@ public abstract class Mobil extends Object2D implements IMobil {
 	protected double aceleration, acelerationX, acelerationY;
 	private boolean mobible;
 	protected int dirX; // 1 y -1 
+<<<<<<< HEAD
 	protected int dirY; 
 	protected boolean moveX;
 	protected boolean moveY;
 	protected int limitx, limity;	
+=======
+	protected int dirY;
+	protected boolean moveX;
+	protected boolean moveY; 	
+>>>>>>> merge
 	
 	//---------------Constructor---------------
 
 	public Mobil(int esX, int esY, int esAncho,
+<<<<<<< HEAD
 	int esAlto, int top, int rigth, int botton, int left) {
+=======
+			int esAlto, int top, int rigth, int botton, int left) {
+>>>>>>> merge
 		super(esX, esY, esAncho, esAlto);
 		this.top = top;
 		this.rigth = rigth;
@@ -32,9 +42,13 @@ public abstract class Mobil extends Object2D implements IMobil {
 		this.left = left;
 		collider = new Collider(this);
 		collider.setRectCircle(posx,  posy, width, height);
+<<<<<<< HEAD
 		aceleration = 0;
 		collider = new Collider(this);
 		collider.setRectCircle(posx,  posy, width, height);
+=======
+		aceleration = 0;
+>>>>>>> merge
 	}
 	
 	public int getAcelerationx() {
@@ -98,12 +112,15 @@ public abstract class Mobil extends Object2D implements IMobil {
 		collider.setRectCircle(posx,  posy, width, height);
 	}
 	
+<<<<<<< HEAD
 	public void move(int x, int y) {
 		posx += x;
 		posy += y;
 		collider.setRectCircle(posx,  posy, width, height);		
 	}
 	
+=======
+>>>>>>> merge
 	public void move(){
 		
 		double acePos = Math.abs(aceleration); 
@@ -143,7 +160,13 @@ public abstract class Mobil extends Object2D implements IMobil {
 		}else if ((posy + height) > botton){
 			speedY = speedY * -1;
 			posy = botton - height;
+<<<<<<< HEAD
 		}
+=======
+		}	
+		
+		collider.setRectCircle(posx,  posy, width, height);
+>>>>>>> merge
 	}
 	
 	@Override
@@ -168,14 +191,15 @@ public abstract class Mobil extends Object2D implements IMobil {
 	public void setHeight(int miAlto){
 		height = miAlto;
 		collider.setRectCircle(posx,  posy, width, height);
+<<<<<<< HEAD
 	}
+=======
+	}
+>>>>>>> merge
 	
 	public void move(boolean moving) {
 		
-		//if(moving == true){
-		
-		System.out.println("Velocidades: " + speedX + ", " + speedY + ", dirX e Y " + dirX + ", " + dirY);
-		
+		//if(moving == true){		
 			speedX = 10;
 			speedY = 10;
 			
@@ -208,7 +232,11 @@ public abstract class Mobil extends Object2D implements IMobil {
 	
 	public void setReceiveCollision(boolean b){
 		receiveCollision = b;
+<<<<<<< HEAD
 	}
+=======
+	}
+>>>>>>> merge
 
 	public double getPower() {
 		return power;
@@ -218,7 +246,11 @@ public abstract class Mobil extends Object2D implements IMobil {
 		speedX = (int) (speedX * cosX + cosX * recPower);
 		speedY = (int) (speedY * cosY + cosY * recPower);
 //		System.out.println(speedX+"_"+speedY);
+<<<<<<< HEAD
 	}
+=======
+	}
+>>>>>>> merge
 	
 	public void setMobible(boolean b){
 		mobible = b;
@@ -226,6 +258,11 @@ public abstract class Mobil extends Object2D implements IMobil {
 	
 	public boolean getMobible(){
 		return mobible;
+<<<<<<< HEAD
 	}
+=======
+	}
+
+>>>>>>> merge
 }
 	
