@@ -1,28 +1,34 @@
 package pongo;
 
+import pongo.intefaces.IMobil;
 import pongo.physics.Collider;
 
-public abstract class Mobil extends Object2D{
+public abstract class Mobil extends Object2D implements IMobil {
 
 	protected int speedX;
 	protected int speedY;
 	protected int acelerationx;
 	protected int acelerationy;
-	protected int limitx, limity;
+	protected int top,rigth,botton,left;
 	private Collider collider;
 	protected boolean receiveCollision = false;
 	protected double power;
+	protected double aceleration, acelerationX, acelerationY;
+	private boolean mobible;
 	
 	
 	//---------------Constructor---------------
 
 	public Mobil(int esX, int esY, int esAncho,
-	int esAlto, int limx, int limy) {
+	int esAlto, int top, int rigth, int botton, int left) {
 		super(esX, esY, esAncho, esAlto);
-		limitx = limx;
-		limity = limy;
+		this.top = top;
+		this.rigth = rigth;
+		this.botton = botton;
+		this.left = left;
 		collider = new Collider(this);
 		collider.setRectCircle(posx,  posy, width, height);
+		aceleration = 0;
 	}
 	
 	public int getAcelerationx() {
@@ -86,20 +92,53 @@ public abstract class Mobil extends Object2D{
 		collider.setRectCircle(posx,  posy, width, height);
 	}
 	
+
+	public void move(int x, int y) {
+		posx += x;
+		posy += y;
+		collider.setRectCircle(posx,  posy, width, height);		
+	}
 	
 	public void move(){
+		
+		double acePos = Math.abs(aceleration); 
+		double aceNeg = acePos * -1;
+		
+		if (speedX > 0){
+			acelerationX = aceNeg;
+		} else if (speedX < 0){
+			acelerationX = acePos;
+		} else {
+			acelerationX = 0;
+		}
+		
+		if (speedY > 0){
+			acelerationY = aceNeg;
+		} else if (speedY < 0) {
+			acelerationY = acePos;
+		}else {
+			acelerationY = 0;
+		}
+		
+		speedX += acelerationX / 2d;
+		speedY += acelerationY / 2d;
+		
 		posx += speedX;
 		posy += speedY;
-		if (posx < 0 ) {
+		if ((posx - width ) < left ) {
 			speedX = speedX * -1;
-		} else if (posx > limitx){
+			posx = left + width;
+		} else if ((posx + width) > rigth){
 			speedX = speedX * -1;
+			posx = rigth - width;
 		}
-		if (posy < 0 ) {
+		if ((posy - height) < top ) {
 			speedY = speedY * -1;
-		}else if (posy > limity){
+			posy = top + height;
+		}else if ((posy + height) > botton){
 			speedY = speedY * -1;
-		}
+			posy = botton - height;
+		}		
 		collider.setRectCircle(posx,  posy, width, height);
 	}
 	
@@ -127,19 +166,19 @@ public abstract class Mobil extends Object2D{
 		collider.setRectCircle(posx,  posy, width, height);
 	}
 
-	public void move(int x, int y) {
-		posx += x;
-		posy += y;
-		collider.setRectCircle(posx,  posy, width, height);		
-	}
 
 	public Collider getCollider() {
 		return collider;
 	}	
 	
-	public boolean receiveCollision(){
+	public boolean getReceiveCollision(){
 		return receiveCollision;
 	}
+	
+	public void setReceiveCollision(boolean b){
+		receiveCollision = b;
+	}
+
 
 	public double getPower() {
 		return power;
@@ -149,6 +188,15 @@ public abstract class Mobil extends Object2D{
 		speedX = (int) (speedX * cosX + cosX * recPower);
 		speedY = (int) (speedY * cosY + cosY * recPower);
 //		System.out.println(speedX+"_"+speedY);
+	}
+	
+	public void setMobible(boolean b){
+		mobible = b;
+	}
+	
+
+	public boolean getMobible(){
+		return mobible;
 	}
 }
 	
