@@ -110,9 +110,9 @@ public class GameField extends JPanel { // Area o campo donde se desarrolla el j
 		
 	}
 	
-	public void scorePlayer(int play){
+	public void scorePlayer(int[] play){
 		
-		score[play]++;
+		score = play;
 		
 	}
 	

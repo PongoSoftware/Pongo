@@ -24,6 +24,8 @@ public class GameFrame extends JFrame {
 	private JPanel gameArea;
 	private PongoMain controller;
 	
+	private int[] score;
+	
 	// --------------------------------------- Constructores
 	
 	public GameFrame(int width,int height, Background nBack){
@@ -50,6 +52,10 @@ public class GameFrame extends JFrame {
 		//gameArea = new GameField((int)(resolution[0] * 2f/3f), (int)(resolution[1] * resolution[1] * 27f/30f));
 		gameArea = new GameField(resolution[0], resolution[1], new BorderLayout(0,0));
 		getContentPane().add(gameArea, BorderLayout.CENTER);
+				
+		score = new int[2];
+		score[0] = 0;
+		score[1] = 0;		
 		
 		requestFocus();
 		this.addKeyListener(new KeyListener() {
@@ -117,13 +123,28 @@ public class GameFrame extends JFrame {
 	
 	public void scorePlayer1(){
 		
-		((GameField)gameArea).scorePlayer(0);
+		score[0]++;		
+		((GameField)gameArea).scorePlayer(score);
+		
+		
+		if(score[0] >= 7){
+			
+			controller.gameWon(1);
+			
+		}
 		
 	}
 	
 	public void scorePlayer2(){
 		
-		((GameField)gameArea).scorePlayer(1);
+		score[1]++;		
+		((GameField)gameArea).scorePlayer(score);
+		
+		if(score[1] >= 7){
+			
+			controller.gameWon(2);
+			
+		}
 		
 	}
 	
