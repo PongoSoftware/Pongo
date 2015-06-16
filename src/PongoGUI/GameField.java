@@ -78,7 +78,7 @@ public class GameField extends JPanel { // Area o campo donde se desarrolla el j
 		Font f = new  Font ("SansSerif", Font.BOLD, 200); 
         g2.setFont(f);
         g2.setColor(Color.PINK);
-		g2.drawString((score[0] + " - " + score[1]), 200, 350);
+		g2.drawString(( score[1] + " - " + score[0]), 200, 350);
 		
 		if(toDraw.isEmpty() == false){
 		

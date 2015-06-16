@@ -24,6 +24,7 @@ public class PongoMain {
 	Background back;
 	
 	boolean sigueJuego;
+	boolean gamePaused = false;
 	
 	/**
 	 * @param numPlayers
@@ -129,6 +130,7 @@ public class PongoMain {
 		frame.drawGameObject(fieldLimit[5]);
 		
 //		boolean sigueJuego = false;
+		gamePaused = false;
 		sigueJuego = true;
 		while(sigueJuego){
 			
@@ -159,6 +161,7 @@ public class PongoMain {
 		int numPlayers = 2;
 		
 		while(nextGame == true){
+			System.out.println("Nuevo juego");
 			PongoMain pongoMain = new PongoMain(numPlayers);
 		}
 	}
@@ -177,36 +180,42 @@ public class PongoMain {
 	 * @param keyCode
 	 */
 	public void recieveKeyPressed(int keyCode) {
+		
+		if(gamePaused == false){
+		
+			switch(keyCode){
+			
+			case 37:
+				((Racket) rackets[1]).moveKeyX(-1);
+				break;
+			case 38:
+				((Racket) rackets[1]).moveKeyY(-1);
+				break;
+			case 39:
+				((Racket) rackets[1]).moveKeyX(1);
+				break;
+			case 40:
+				((Racket) rackets[1]).moveKeyY(1);
+				break;
+				
+			case 65:
+				((Racket) rackets[0]).moveKeyX(-1);
+				break;
+			case 87:
+				((Racket) rackets[0]).moveKeyY(-1);
+				break;
+			case 68:
+				((Racket) rackets[0]).moveKeyX(1);
+				break;
+			case 83:
+				((Racket) rackets[0]).moveKeyY(1);
+				break;
+				
+			}
+		}	
+			// Para continuar o salir del juego.
 		switch(keyCode){
 		
-		case 37:
-			((Racket) rackets[1]).moveKeyX(-1);
-			break;
-		case 38:
-			((Racket) rackets[1]).moveKeyY(-1);
-			break;
-		case 39:
-			((Racket) rackets[1]).moveKeyX(1);
-			break;
-		case 40:
-			((Racket) rackets[1]).moveKeyY(1);
-			break;
-			
-		case 65:
-			((Racket) rackets[0]).moveKeyX(-1);
-			break;
-		case 87:
-			((Racket) rackets[0]).moveKeyY(-1);
-			break;
-		case 68:
-			((Racket) rackets[0]).moveKeyX(1);
-			break;
-		case 83:
-			((Racket) rackets[0]).moveKeyY(1);
-			break;
-			
-			// Para continuar o salir del juego.
-			
 		case 13: 
 			
 			sigueJuego = false;
@@ -218,8 +227,8 @@ public class PongoMain {
 			sigueJuego = false;
 			nextGame = false;
 			break;
-			
 		}
+		
 		
 	}
 	
@@ -227,34 +236,39 @@ public class PongoMain {
 	 * @param keyCode
 	 */
 	public void recieveKeyReleased(int keyCode) {
-		switch(keyCode){
 		
-		case 37:
-			((Racket) rackets[1]).moveKeyX(0);
-			break;
-		case 38:
-			((Racket) rackets[1]).moveKeyY(0);
-			break;
-		case 39:
-			((Racket) rackets[1]).moveKeyX(0);
-			break;
-		case 40:
-			((Racket) rackets[1]).moveKeyY(0);
-			break;
+		if(gamePaused == false) {
+		
+			switch(keyCode){
 			
-		case 65:
-			((Racket) rackets[0]).moveKeyX(0);
-			break;
-		case 87:
-			((Racket) rackets[0]).moveKeyY(0);
-			break;
-		case 68:
-			((Racket) rackets[0]).moveKeyX(0);
-			break;
-		case 83:
-			((Racket) rackets[0]).moveKeyY(0);
-			break;
-			
+			case 37:
+				((Racket) rackets[1]).moveKeyX(0);
+				break;
+			case 38:
+				((Racket) rackets[1]).moveKeyY(0);
+				break;
+			case 39:
+				((Racket) rackets[1]).moveKeyX(0);
+				break;
+			case 40:
+				((Racket) rackets[1]).moveKeyY(0);
+				break;
+				
+			case 65:
+				((Racket) rackets[0]).moveKeyX(0);
+				break;
+			case 87:
+				((Racket) rackets[0]).moveKeyY(0);
+				break;
+			case 68:
+				((Racket) rackets[0]).moveKeyX(0);
+				break;
+			case 83:
+				((Racket) rackets[0]).moveKeyY(0);
+				break;
+				
+			}
+		
 		}
 	}
 	
@@ -296,8 +310,8 @@ public class PongoMain {
 		
 		System.out.println("Pulsa Enter para seguir jugando, o Escape para salir");
 		
+		gamePaused = true;
 		// Implementar reseteo.
-		sigueJuego = false;
 		
 	}
 
