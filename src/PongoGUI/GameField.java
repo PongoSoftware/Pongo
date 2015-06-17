@@ -23,6 +23,9 @@ public class GameField extends JPanel { // Area o campo donde se desarrolla el j
 	
 	/**
 	 * 
+	 * La lista toDraw almacena todos los objetos de tipo Object2D que deben
+	 * dibujarse en la escena.
+	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private int[] resolution;
@@ -60,7 +63,11 @@ public class GameField extends JPanel { // Area o campo donde se desarrolla el j
 	
 	// ------------------------------------ Métodos y funcionalidad
 	
-	/* (sin Javadoc)
+	/* 
+	 * Este método es llamado automáticamente cuando se utiliza repaint(), y se encarga de 
+	 * recorrer la lista de elementos a dibujar, extrayendo su información (color, posición, 
+	 * tipo de figura...).
+	 * 
 	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
 	 */
 	public void paintComponent(Graphics g){
@@ -71,7 +78,7 @@ public class GameField extends JPanel { // Area o campo donde se desarrolla el j
 		Font f = new  Font ("SansSerif", Font.BOLD, 200); 
         g2.setFont(f);
         g2.setColor(Color.PINK);
-		g2.drawString((score[0] + " - " + score[1]), 200, 350);
+		g2.drawString(( score[1] + " - " + score[0]), 200, 350);
 		
 		if(toDraw.isEmpty() == false){
 		
