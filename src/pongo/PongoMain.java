@@ -151,22 +151,6 @@ public class PongoMain {
 	
 		frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
 	}
-
-	
-	
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		int numPlayers = 2;
-		
-		while(nextGame == true){
-			System.out.println("Nuevo juego");
-			PongoMain pongoMain = new PongoMain(numPlayers);
-		}
-	}
-
-	
 	
 	/**
 	 * 37 izquierda
@@ -313,6 +297,19 @@ public class PongoMain {
 		gamePaused = true;
 		// Implementar reseteo.
 		
+	}
+	
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		int numPlayers = 2;
+		
+		while(nextGame == true){
+			System.out.println("Nuevo juego");
+			@SuppressWarnings("unused")
+			PongoMain pongoMain = new PongoMain(numPlayers);
+		}
 	}
 
 }

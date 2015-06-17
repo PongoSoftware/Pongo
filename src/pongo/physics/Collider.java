@@ -1,9 +1,6 @@
 package pongo.physics;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-
-import pongo.Mobil;
 import pongo.Mobil;
 
 /**
@@ -19,7 +16,7 @@ public class Collider{
 	/**
 	 * 
 	 */
-	static ArrayList<Collider> listCollider = new ArrayList();
+	static ArrayList<Collider> listCollider = new ArrayList<Collider>();
 	
 	/**
 	 * @param obj
@@ -84,17 +81,6 @@ public class Collider{
 	public void setIsCircle(){
 		calcCircle();
 	}
-	
-	//Unused
-	/**
-	 * @param x
-	 * @param y
-	 * @param width
-	 * @param height
-	 */
-	private void calcCircle(int x, int y, int width, int height){
-		setRect(x,y,width,height);
-	}
 
 	/**
 	 * 
@@ -123,7 +109,7 @@ public class Collider{
 	public static void checkCollisionList(){ //Check collision of all collider.
 		for (int i = 0; i < listCollider.size(); i++){
 			for (int k = i+1; k < listCollider.size(); k++){
-				boolean col = listCollider.get(i).checkCollision(listCollider.get(k));
+				listCollider.get(i).checkCollision(listCollider.get(k));
 			}
 		}
 	}
@@ -253,10 +239,7 @@ public class Collider{
 	private boolean checkColisionRectCircle(
 			int centerx, int centery, int initx, int endx, int inity, int endy, //El primero es un cuadrado
 			int colCenterx, int colCentery, int colRadius){ //El segundo es un circulo
-		
-		int distancex = centerx - colCenterx;
-		int distancey = centery - colCentery;
-		
+				
 		int lengthx = endx - initx;
 		int lengthy = endy - inity;
 		int calc = (int) (Math.pow(lengthx,2) +  Math.pow(lengthy,2));

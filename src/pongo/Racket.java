@@ -1,7 +1,6 @@
 package pongo;
 
 import pongo.intefaces.IKeyMobil;
-import pongo.physics.Collider;
 
 /**
  * @author jfernandezpe

@@ -29,7 +29,7 @@ public class GameField extends JPanel { // Area o campo donde se desarrolla el j
 	 */
 	private static final long serialVersionUID = 1L;
 	private int[] resolution;
-	private List toDraw;
+	private List<Object2D> toDraw;
 	
 	private int[] score;
 	
@@ -49,7 +49,7 @@ public class GameField extends JPanel { // Area o campo donde se desarrolla el j
 		resolution[0] = width;
 		resolution[1] = height;
 		
-		toDraw = new ArrayList();
+		toDraw = new ArrayList<Object2D>();
 		setSize(resolution[0], resolution[1]);
 		setVisible(true);	
 		
