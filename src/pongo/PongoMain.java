@@ -39,7 +39,7 @@ public class PongoMain {
 		
 		int speedGame = 36;
 				
-		int[][] goals;
+		int[][] goalsDisc;
 		rackets = new Racket[numPlayers];
 		fieldLimit = new FieldLimit[6];
 		
@@ -105,11 +105,11 @@ public class PongoMain {
 		posyDisc = (botton - top)  / 2 - discSize / 2;
 		disc = new Disc(posxDisc, posyDisc, discSize, discSize, top, rigth, botton, left);
 		((Disc)disc).setController(this);
-		int[][] tmpGoals = {{beginGoal, endGoal, left},{beginGoal, endGoal, rigth}};
+		int[][] tmpGoalsDisc = {{beginGoal, endGoal, left},{beginGoal, endGoal, rigth}};
 		
-		goals = tmpGoals;
+		goalsDisc = tmpGoalsDisc;
 		
-		((Disc)disc).setGoal(goals);
+		((Disc)disc).setGoal(goalsDisc);
 				
 		back = new Background();
 				
