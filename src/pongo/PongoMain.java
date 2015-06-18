@@ -56,7 +56,8 @@ public class PongoMain {
 		racketheight = 65;
 		
 		//Tamaño del disco
-		discSize = 55;		
+		discSize = 30; //55;
+		int goalDiscSize = 55;
 		
 		//Tamaño de porterías y límite del campo
 		widthGoal = 5;
@@ -65,13 +66,13 @@ public class PongoMain {
 		
 		widthField = fieldSizex;
 		top = 0;
-		botton = fieldSizey - discSize;
-		left = discSize;
-		rigth = fieldSizex - discSize;
+		botton = fieldSizey - goalDiscSize;
+		left = goalDiscSize;
+		rigth = fieldSizex - goalDiscSize;
 		
 		widthField = 10;
-		heightField = (int) (((botton - top) - discSize * 3 ) / 2) ;
-		middle = (int) (top + heightField + discSize * 3) + 1;
+		heightField = (int) (((botton - top) - goalDiscSize * 3 ) / 2) ;
+		middle = (int) (top + heightField + goalDiscSize * 3) + 1;
 		//Creo límites del campo
 		fieldLimit[0] = new FieldLimit(left, top, widthField, heightField);
 		fieldLimit[1] = new FieldLimit(rigth, top, widthField, heightField);
@@ -88,11 +89,17 @@ public class PongoMain {
 		
 		
 		// Creo porterias
-		goal = new Goal[numPlayers];
+		goal = new Goal[6];
 		posxGoal = left + 20;
 		goal[0] = new Goal(posxGoal, beginGoal, widthGoal, endGoal - beginGoal);
 		posxGoal = rigth - 20;
 		goal[1] = new Goal(posxGoal, beginGoal, widthGoal,endGoal - beginGoal);
+		
+		//Añadiendo imágenes:
+		goal[2] = new Goal(posxGoal, beginGoal, 0, endGoal - beginGoal);
+		goal[3] = new Goal(posxGoal, beginGoal, 0, endGoal - beginGoal);
+		goal[4] = new Goal(posxGoal, beginGoal, 0, endGoal - beginGoal);
+		goal[5] = new Goal(posxGoal, beginGoal, 0, endGoal - beginGoal);
 
 		//Creo raquetas
 		for (int i = 0; i < numPlayers; i++){

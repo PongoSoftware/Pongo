@@ -36,8 +36,8 @@ public class Racket extends Mobil implements IKeyMobil{
 	@Override
 	public void moveKey(boolean moving) {
 		//if(moving == true){		
-			speedX = 10;
-			speedY = 10;
+			speedX = 12;
+			speedY = 12;
 			
 			posx += (speedX * dirX);
 			posy += (speedY * dirY);

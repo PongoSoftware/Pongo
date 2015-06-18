@@ -117,7 +117,6 @@ public abstract class Mobil extends Object2D {
 		} else if (speedY < limitNeg){
 			speedY = limitNeg;
 		}
-		
 		posx += speedX;
 		posy += speedY;
 		
@@ -149,9 +148,11 @@ public abstract class Mobil extends Object2D {
 	 * @param recPower
 	 */
 	public void receivePower(double cosX, double cosY, double recPower) {
+		int preSpeedX = (int) speedX;
+//		System.out.println("_"+speedX+"_"+cosX+"_POW"+recPower);
 		speedX = (int) (speedX * cosX + cosX * recPower);
 		speedY = (int) (speedY * cosY + cosY * recPower);
-//		System.out.println(speedX+"_"+speedY);
+		System.out.println(preSpeedX+"_"+speedX+"_"+cosX+"_POW"+recPower);
 	}	
 	
 	/**
