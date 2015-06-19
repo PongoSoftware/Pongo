@@ -68,7 +68,7 @@ public class PongoMain {
 		top = 0;
 		botton = fieldSizey - goalDiscSize;
 		left = goalDiscSize;
-		rigth = fieldSizex - goalDiscSize;
+		rigth = fieldSizex - goalDiscSize - widthGoal;
 		
 		widthField = 10;
 		heightField = (int) (((botton - top) - goalDiscSize * 3 ) / 2) ;
@@ -86,20 +86,18 @@ public class PongoMain {
 		heightField = 10;		
 		fieldLimit[4] = new FieldLimit(left, top, widthField, heightField);
 		fieldLimit[5] = new FieldLimit(left, botton, widthField, heightField); 
-		
-		
+
 		// Creo porterias
 		goal = new Goal[6];
-		posxGoal = left + 20;
+		posxGoal = 0;
 		goal[0] = new Goal(posxGoal, beginGoal, widthGoal, endGoal - beginGoal);
-		posxGoal = rigth - 20;
-		goal[1] = new Goal(posxGoal, beginGoal, widthGoal,endGoal - beginGoal);
+		goal[1] = new Goal(posxGoal, beginGoal - widthGoal, left + widthGoal, widthGoal);
+		goal[2] = new Goal(posxGoal, endGoal, left, widthGoal);
 		
-		//Añadiendo imágenes:
-		goal[2] = new Goal(posxGoal, beginGoal, 0, endGoal - beginGoal);
-		goal[3] = new Goal(posxGoal, beginGoal, 0, endGoal - beginGoal);
-		goal[4] = new Goal(posxGoal, beginGoal, 0, endGoal - beginGoal);
-		goal[5] = new Goal(posxGoal, beginGoal, 0, endGoal - beginGoal);
+		posxGoal = fieldSizex;
+		goal[3] = new Goal(posxGoal, beginGoal, widthGoal, endGoal - beginGoal);
+		goal[4] = new Goal(rigth + widthGoal, beginGoal - widthGoal, left + widthGoal, widthGoal);
+		goal[5] = new Goal(rigth + widthGoal, endGoal, left + widthGoal, widthGoal);
 
 		//Creo raquetas
 		for (int i = 0; i < numPlayers; i++){
@@ -129,6 +127,10 @@ public class PongoMain {
 		frame.drawGameObject(disc);
 		frame.drawGameObject(goal[0]);
 		frame.drawGameObject(goal[1]);
+		frame.drawGameObject(goal[2]);
+		frame.drawGameObject(goal[3]);
+		frame.drawGameObject(goal[4]);
+		frame.drawGameObject(goal[5]);
 		frame.drawGameObject(fieldLimit[0]);
 		frame.drawGameObject(fieldLimit[1]);
 		frame.drawGameObject(fieldLimit[2]);
